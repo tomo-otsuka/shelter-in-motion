@@ -60,9 +60,9 @@ Guidance for AI agents working on this repository.
 When an agent is tasked with sorting through a bulk folder of uncurated, user-provided photos, it should follow this systematic approach:
 
 1. **Initial Grouping via Metadata:** The raw photo batch will generally be in chronological order. Use file timestamps (or EXIF data if present) to step through the timeline and easily bucket photos into stops based on the dates in the `assets/data/stops.json` itinerary. This avoids needing to guess locations visually.
-2. **Visual Assessment:** Use the `view_file` tool to inspect the visual content of the photos in each bucket. Evaluate based on:
+2. **Visual Assessment:** You **MUST** use the `view_file` tool to visually inspect the image content. **DO NOT** curate blindly based on filenames, timestamps, or metadata. Evaluate based on:
    - **Aesthetic:** Does it fit the warm, dark, cinematic, reflective tone?
-   - **Subject:** Does it capture the vibe of the specific location (e.g. empty highways, neon signs, nature)?
+   - **Subject:** Does it capture the vibe of the specific location (e.g., empty highways, neon signs, nature)? **AVOID** indoor snapshots, party photos, or personal group shots unless they specifically match the project's cinematic travel-log aesthetic.
    - **Quality:** Is the subject clear and the composition engaging?
    - **De-duplication:** For bursts or sequential shots of the same subject, pick only the single strongest frame and aggressively discard the near-duplicates to avoid repetition.
 3. **Selection & Role Assignment:** For each stop in the itinerary, select photos based on the stop's tier (defined in `stops.json`):
