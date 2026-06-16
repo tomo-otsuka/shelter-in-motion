@@ -395,6 +395,24 @@ def main():
         data = json.load(f)
     stops = data["stops"]
 
+    # Prepend origin to catch pre-trip photos
+    if "origin" in data and len(stops) > 0:
+        first_stop_start = datetime.strptime(stops[0]["dateStart"], "%Y-%m-%d")
+        origin_start = (first_stop_start - timedelta(days=14)).strftime("%Y-%m-%d")
+        origin_end = stops[0]["dateStart"]
+        
+        origin_title = data["origin"].get("title", "origin")
+        origin_id = origin_title.split(",")[0].lower().replace(" ", "-")
+        
+        origin_stop = {
+            "id": origin_id,
+            "title": origin_title,
+            "coordinates": data["origin"]["coordinates"],
+            "dateStart": origin_start,
+            "dateEnd": origin_end
+        }
+        stops.insert(0, origin_stop)
+
     print(f"Takeout directory : {takeout_dir}")
     print(f"Stops file        : {stops_file}")
     if args.staging_dir:

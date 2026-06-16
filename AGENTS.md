@@ -61,8 +61,8 @@ When an agent is tasked with sorting through a bulk folder of uncurated, user-pr
 
 1. **Initial Grouping via Metadata (Staging):** The raw photo batch will generally be in chronological order. Use the `scripts/batch-match.py` script to automatically parse EXIF data and timestamps, bucketing the raw photos into stop-specific folders within the `staging/` directory based on the `assets/data/stops.json` itinerary. This avoids needing to guess locations visually. Do NOT commit the `staging/` directory.
 2. **Visual Assessment:** You **MUST** use the `view_file` tool to visually inspect the image content within the `staging/<stop-id>/` folders. **DO NOT** curate blindly based on filenames, timestamps, or metadata. Evaluate based on:
-   - **Aesthetic:** Does it fit the warm, dark, cinematic, reflective tone?
-   - **Subject:** Does it capture the vibe of the specific location (e.g., empty highways, neon signs, nature)? **AVOID** indoor snapshots, party photos, or personal group shots unless they specifically match the project's cinematic travel-log aesthetic.
+   - **Aesthetic & Subject:** Does it capture the highlights and unique vibe of the specific location? While the overall project has a cinematic and reflective tone, **do not overly focus on darkness or moodiness**. Prioritize images that best represent the location's highlights (e.g., epic landscapes, interesting landmarks, empty highways).
+   - **People:** Include good quality group photos or photos of the author with Points of Interest (POIs) if they are strong images. Only avoid random indoor snapshots or excessive party photos that don't capture the essence of the trip.
    - **Quality:** Is the subject clear and the composition engaging?
    - **De-duplication:** For bursts or sequential shots of the same subject, pick only the single strongest frame and aggressively discard the near-duplicates to avoid repetition.
 3. **Selection & Role Assignment:** For each stop in the itinerary, select photos based on the stop's tier (defined in `stops.json`):
@@ -72,8 +72,9 @@ When an agent is tasked with sorting through a bulk folder of uncurated, user-pr
    - *Discard the rest.*
 4. **Processing & Pipeline Setup:** For the selected photos, prepare them for the repository:
    - Rename the files to descriptive, URL-safe names (e.g., `bend-oregon-highway.webp`).
-   - Move them into the appropriate `assets/images/<stop-id>/` directory.
-   - Run the mandatory optimization and **CRITICAL EXIF stripping** step (e.g., `exiftool -all=`).
+   - Run the mandatory optimization and **CRITICAL EXIF stripping** step. You can use the provided `scripts/process-image.py` script (e.g., `python scripts/process-image.py --input <src> --output <dest.webp> --size 1600`) which uses Python's `Pillow` (PIL) library to safely convert to WebP, scale down (aim for < 500KB), and automatically strip EXIF. This is highly recommended as native OS tools like macOS `sips` may fail to write WebP formats.
+   - Verify that all EXIF data (especially GPS coordinates) has been stripped by using a tool like `exiftool assets/images/<stop-id>/*.webp`.
+   - Move the final optimized files into the appropriate `assets/images/<stop-id>/` directory and delete the original unprocessed files from the working directory.
    - Update `assets/data/stops.json` with the assigned filenames for each stop.
 
 ## Testing & Validation

@@ -1,311 +1,987 @@
 {
   "origin": {
     "title": "San Francisco, CA",
-    "coordinates": [37.7749, -122.4194]
+    "coordinates": [
+      37.7749,
+      -122.4194
+    ]
   },
   "stops": [
     {
-      "id": "lake-tahoe", "title": "Lake Tahoe", "chapter": "the-northwest", "tier": "standard",
-      "coordinates": [39.0968, -120.0324], "dateStart": "2021-08-06", "dateEnd": "2021-08-07",
-      "days": 2, "dayOfTrip": 1, "state": "CA/NV",
-      "nationalPark": null, "events": [], "notes": "Friend's birthday. The trip begins.", "photos": []
-    },
-    {
-      "id": "bend", "title": "Bend", "chapter": "the-northwest", "tier": "standard",
-      "coordinates": [44.0582, -121.3153], "dateStart": "2021-08-08", "dateEnd": "2021-08-11",
-      "days": 4, "dayOfTrip": 3, "state": "OR",
-      "nationalPark": null, "events": [], "notes": "Friends. High desert and craft beer town.", "photos": []
-    },
-    {
-      "id": "portland-or", "title": "Portland", "chapter": "the-northwest", "tier": "standard",
-      "coordinates": [45.5152, -122.6784], "dateStart": "2021-08-12", "dateEnd": "2021-08-14",
-      "days": 3, "dayOfTrip": 7, "state": "OR",
-      "nationalPark": null, "events": [], "notes": "Friends.", "photos": []
-    },
-    {
-      "id": "seattle", "title": "Seattle", "chapter": "the-northwest", "tier": "marquee", "hasEntry": true,
-      "coordinates": [47.6062, -122.3321], "dateStart": "2021-08-15", "dateEnd": "2021-08-21",
-      "days": 7, "dayOfTrip": 10, "state": "WA",
-      "nationalPark": "Mt Rainier NP", "events": [], "notes": "A week in the city. Mt Rainier. Friends.", "photos": []
-    },
-    {
-      "id": "port-angeles", "title": "Port Angeles", "chapter": "the-northwest", "tier": "marquee", "hasEntry": true,
-      "coordinates": [48.1185, -123.4307], "dateStart": "2021-08-22", "dateEnd": "2021-08-24",
-      "days": 3, "dayOfTrip": 17, "state": "WA",
-      "nationalPark": "Olympic NP", "events": [], "notes": "Olympic National Park. Rainforests and coastline.", "photos": []
-    },
-    {
-      "id": "seaside", "title": "Seaside", "chapter": "the-northwest", "tier": "standard",
-      "coordinates": [45.9932, -123.9226], "dateStart": "2021-08-25", "dateEnd": "2021-08-27",
-      "days": 3, "dayOfTrip": 20, "state": "OR",
-      "nationalPark": null, "events": [], "notes": "Oregon coast.", "photos": []
-    },
-    {
-      "id": "eugene", "title": "Eugene", "chapter": "the-northwest", "tier": "postcard",
-      "coordinates": [44.0521, -123.0868], "dateStart": "2021-08-28", "dateEnd": "2021-08-28",
-      "days": 1, "dayOfTrip": 23, "state": "OR",
-      "nationalPark": null, "events": [], "notes": "Passing through.", "photos": []
-    },
-    {
-      "id": "reno", "title": "Reno", "chapter": "the-burn", "tier": "standard",
-      "coordinates": [39.5296, -119.8138], "dateStart": "2021-08-29", "dateEnd": "2021-09-01",
-      "days": 4, "dayOfTrip": 24, "state": "NV",
-      "nationalPark": null, "events": [], "notes": "Pre-burn staging.", "photos": []
-    },
-    {
-      "id": "black-rock", "title": "Black Rock City", "chapter": "the-burn", "tier": "marquee", "hasEntry": true,
-      "coordinates": [40.7864, -119.2065], "dateStart": "2021-09-02", "dateEnd": "2021-09-05",
-      "days": 4, "dayOfTrip": 28, "state": "NV",
-      "nationalPark": null, "events": ["Burning Man"], "notes": "Burning Man. Its own world.", "photos": []
-    },
-    {
-      "id": "los-angeles", "title": "Los Angeles", "chapter": "the-la-chapter", "tier": "marquee", "hasEntry": true,
-      "coordinates": [34.0522, -118.2437], "dateStart": "2021-09-06", "dateEnd": "2021-10-01",
-      "days": 26, "dayOfTrip": 32, "state": "CA",
+      "id": "lake-tahoe",
+      "title": "Lake Tahoe",
+      "chapter": "the-northwest",
+      "tier": "standard",
+      "coordinates": [
+        39.0968,
+        -120.0324
+      ],
+      "dateStart": "2021-08-06",
+      "dateEnd": "2021-08-07",
+      "days": 2,
+      "dayOfTrip": 1,
+      "state": "CA/NV",
       "nationalPark": null,
-      "events": ["James Blake @ Hollywood Bowl", "Porter Robinson @ LA State Historic Park"],
+      "events": [],
+      "notes": "Friend's birthday. The trip begins.",
+      "photos": [
+        "lake-tahoe-hero-smoky-road.webp",
+        "lake-tahoe-smoke-over-hills.webp",
+        "lake-tahoe-yellow-sky-road.webp",
+        "lake-tahoe-hazy-highway.webp"
+      ]
+    },
+    {
+      "id": "bend",
+      "title": "Bend",
+      "chapter": "the-northwest",
+      "tier": "standard",
+      "coordinates": [
+        44.0582,
+        -121.3153
+      ],
+      "dateStart": "2021-08-08",
+      "dateEnd": "2021-08-11",
+      "days": 4,
+      "dayOfTrip": 3,
+      "state": "OR",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Friends. High desert and craft beer town.",
+      "photos": []
+    },
+    {
+      "id": "portland-or",
+      "title": "Portland",
+      "chapter": "the-northwest",
+      "tier": "standard",
+      "coordinates": [
+        45.5152,
+        -122.6784
+      ],
+      "dateStart": "2021-08-12",
+      "dateEnd": "2021-08-14",
+      "days": 3,
+      "dayOfTrip": 7,
+      "state": "OR",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Friends.",
+      "photos": []
+    },
+    {
+      "id": "seattle",
+      "title": "Seattle",
+      "chapter": "the-northwest",
+      "tier": "marquee",
+      "hasEntry": true,
+      "coordinates": [
+        47.6062,
+        -122.3321
+      ],
+      "dateStart": "2021-08-15",
+      "dateEnd": "2021-08-21",
+      "days": 7,
+      "dayOfTrip": 10,
+      "state": "WA",
+      "nationalPark": "Mt Rainier NP",
+      "events": [],
+      "notes": "A week in the city. Mt Rainier. Friends.",
+      "photos": []
+    },
+    {
+      "id": "port-angeles",
+      "title": "Port Angeles",
+      "chapter": "the-northwest",
+      "tier": "marquee",
+      "hasEntry": true,
+      "coordinates": [
+        48.1185,
+        -123.4307
+      ],
+      "dateStart": "2021-08-22",
+      "dateEnd": "2021-08-24",
+      "days": 3,
+      "dayOfTrip": 17,
+      "state": "WA",
+      "nationalPark": "Olympic NP",
+      "events": [],
+      "notes": "Olympic National Park. Rainforests and coastline.",
+      "photos": []
+    },
+    {
+      "id": "seaside",
+      "title": "Seaside",
+      "chapter": "the-northwest",
+      "tier": "standard",
+      "coordinates": [
+        45.9932,
+        -123.9226
+      ],
+      "dateStart": "2021-08-25",
+      "dateEnd": "2021-08-27",
+      "days": 3,
+      "dayOfTrip": 20,
+      "state": "OR",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Oregon coast.",
+      "photos": []
+    },
+    {
+      "id": "eugene",
+      "title": "Eugene",
+      "chapter": "the-northwest",
+      "tier": "postcard",
+      "coordinates": [
+        44.0521,
+        -123.0868
+      ],
+      "dateStart": "2021-08-28",
+      "dateEnd": "2021-08-28",
+      "days": 1,
+      "dayOfTrip": 23,
+      "state": "OR",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Passing through.",
+      "photos": []
+    },
+    {
+      "id": "reno",
+      "title": "Reno",
+      "chapter": "the-burn",
+      "tier": "standard",
+      "coordinates": [
+        39.5296,
+        -119.8138
+      ],
+      "dateStart": "2021-08-29",
+      "dateEnd": "2021-09-01",
+      "days": 4,
+      "dayOfTrip": 24,
+      "state": "NV",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Pre-burn staging.",
+      "photos": []
+    },
+    {
+      "id": "black-rock",
+      "title": "Black Rock City",
+      "chapter": "the-burn",
+      "tier": "marquee",
+      "hasEntry": true,
+      "coordinates": [
+        40.7864,
+        -119.2065
+      ],
+      "dateStart": "2021-09-02",
+      "dateEnd": "2021-09-05",
+      "days": 4,
+      "dayOfTrip": 28,
+      "state": "NV",
+      "nationalPark": null,
+      "events": [
+        "Burning Man"
+      ],
+      "notes": "Burning Man. Its own world.",
+      "photos": []
+    },
+    {
+      "id": "los-angeles",
+      "title": "Los Angeles",
+      "chapter": "the-la-chapter",
+      "tier": "marquee",
+      "hasEntry": true,
+      "coordinates": [
+        34.0522,
+        -118.2437
+      ],
+      "dateStart": "2021-09-06",
+      "dateEnd": "2021-10-01",
+      "days": 26,
+      "dayOfTrip": 32,
+      "state": "CA",
+      "nationalPark": null,
+      "events": [
+        "James Blake @ Hollywood Bowl",
+        "Porter Robinson @ LA State Historic Park"
+      ],
       "notes": "$75/night base camp. The longest stay that wasn't really staying.",
       "photos": []
     },
     {
-      "id": "san-diego", "title": "San Diego", "chapter": "the-la-chapter", "tier": "postcard",
-      "coordinates": [32.7157, -117.1611], "dateStart": "2021-09-11", "dateEnd": "2021-09-11",
-      "days": 1, "dayOfTrip": 37, "state": "CA",
-      "nationalPark": null, "events": [], "notes": "Day trip from LA.", "photos": []
+      "id": "san-diego",
+      "title": "San Diego",
+      "chapter": "the-la-chapter",
+      "tier": "postcard",
+      "coordinates": [
+        32.7157,
+        -117.1611
+      ],
+      "dateStart": "2021-09-11",
+      "dateEnd": "2021-09-11",
+      "days": 1,
+      "dayOfTrip": 37,
+      "state": "CA",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Day trip from LA.",
+      "photos": []
     },
     {
-      "id": "las-vegas", "title": "Las Vegas", "chapter": "the-la-chapter", "tier": "standard",
-      "coordinates": [36.1699, -115.1398], "dateStart": "2021-09-15", "dateEnd": "2021-09-18",
-      "days": 4, "dayOfTrip": 41, "state": "NV",
-      "nationalPark": null, "events": ["Life is Beautiful"], "notes": "Life is Beautiful festival.", "photos": []
+      "id": "las-vegas",
+      "title": "Las Vegas",
+      "chapter": "the-la-chapter",
+      "tier": "standard",
+      "coordinates": [
+        36.1699,
+        -115.1398
+      ],
+      "dateStart": "2021-09-15",
+      "dateEnd": "2021-09-18",
+      "days": 4,
+      "dayOfTrip": 41,
+      "state": "NV",
+      "nationalPark": null,
+      "events": [
+        "Life is Beautiful"
+      ],
+      "notes": "Life is Beautiful festival.",
+      "photos": []
     },
     {
-      "id": "flagstaff", "title": "Flagstaff", "chapter": "the-southwest", "tier": "postcard",
-      "coordinates": [35.1983, -111.6513], "dateStart": "2021-10-02", "dateEnd": "2021-10-02",
-      "days": 1, "dayOfTrip": 58, "state": "AZ",
-      "nationalPark": null, "events": [], "notes": "Friends.", "photos": []
+      "id": "flagstaff",
+      "title": "Flagstaff",
+      "chapter": "the-southwest",
+      "tier": "postcard",
+      "coordinates": [
+        35.1983,
+        -111.6513
+      ],
+      "dateStart": "2021-10-02",
+      "dateEnd": "2021-10-02",
+      "days": 1,
+      "dayOfTrip": 58,
+      "state": "AZ",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Friends.",
+      "photos": []
     },
     {
-      "id": "albuquerque", "title": "Albuquerque", "chapter": "the-southwest", "tier": "standard",
-      "coordinates": [35.0844, -106.6504], "dateStart": "2021-10-03", "dateEnd": "2021-10-05",
-      "days": 3, "dayOfTrip": 59, "state": "NM",
-      "nationalPark": "Petrified Forest NP", "events": [], "notes": "Petrified Forest on the drive in.", "photos": []
+      "id": "albuquerque",
+      "title": "Albuquerque",
+      "chapter": "the-southwest",
+      "tier": "standard",
+      "coordinates": [
+        35.0844,
+        -106.6504
+      ],
+      "dateStart": "2021-10-03",
+      "dateEnd": "2021-10-05",
+      "days": 3,
+      "dayOfTrip": 59,
+      "state": "NM",
+      "nationalPark": "Petrified Forest NP",
+      "events": [],
+      "notes": "Petrified Forest on the drive in.",
+      "photos": []
     },
     {
-      "id": "santa-fe", "title": "Santa Fe", "chapter": "the-southwest", "tier": "marquee", "hasEntry": true,
-      "coordinates": [35.6870, -105.9378], "dateStart": "2021-10-06", "dateEnd": "2021-10-08",
-      "days": 3, "dayOfTrip": 62, "state": "NM",
-      "nationalPark": null, "events": ["Albuquerque Balloon Fiesta"], "notes": "Albuquerque Balloon Fiesta. Hundreds of hot air balloons at dawn.", "photos": []
+      "id": "santa-fe",
+      "title": "Santa Fe",
+      "chapter": "the-southwest",
+      "tier": "marquee",
+      "hasEntry": true,
+      "coordinates": [
+        35.687,
+        -105.9378
+      ],
+      "dateStart": "2021-10-06",
+      "dateEnd": "2021-10-08",
+      "days": 3,
+      "dayOfTrip": 62,
+      "state": "NM",
+      "nationalPark": null,
+      "events": [
+        "Albuquerque Balloon Fiesta"
+      ],
+      "notes": "Albuquerque Balloon Fiesta. Hundreds of hot air balloons at dawn.",
+      "photos": []
     },
     {
-      "id": "great-sand-dunes", "title": "Great Sand Dunes", "chapter": "the-southwest", "tier": "standard",
-      "coordinates": [37.7329, -105.5121], "dateStart": "2021-10-09", "dateEnd": "2021-10-09",
-      "days": 1, "dayOfTrip": 65, "state": "CO",
-      "nationalPark": "Great Sand Dunes NP", "events": [], "notes": "Great Sand Dunes National Park.", "photos": []
+      "id": "great-sand-dunes",
+      "title": "Great Sand Dunes",
+      "chapter": "the-southwest",
+      "tier": "standard",
+      "coordinates": [
+        37.7329,
+        -105.5121
+      ],
+      "dateStart": "2021-10-09",
+      "dateEnd": "2021-10-09",
+      "days": 1,
+      "dayOfTrip": 65,
+      "state": "CO",
+      "nationalPark": "Great Sand Dunes NP",
+      "events": [],
+      "notes": "Great Sand Dunes National Park.",
+      "photos": []
     },
     {
-      "id": "denver", "title": "Denver", "chapter": "the-southwest", "tier": "marquee", "hasEntry": true,
-      "coordinates": [39.7392, -104.9903], "dateStart": "2021-10-10", "dateEnd": "2021-10-16",
-      "days": 7, "dayOfTrip": 66, "state": "CO",
-      "nationalPark": "Rocky Mountain NP", "events": [], "notes": "A week in the Mile High City. Rocky Mountain NP.", "photos": []
+      "id": "denver",
+      "title": "Denver",
+      "chapter": "the-southwest",
+      "tier": "marquee",
+      "hasEntry": true,
+      "coordinates": [
+        39.7392,
+        -104.9903
+      ],
+      "dateStart": "2021-10-10",
+      "dateEnd": "2021-10-16",
+      "days": 7,
+      "dayOfTrip": 66,
+      "state": "CO",
+      "nationalPark": "Rocky Mountain NP",
+      "events": [],
+      "notes": "A week in the Mile High City. Rocky Mountain NP.",
+      "photos": []
     },
     {
-      "id": "kansas-city", "title": "Kansas City", "chapter": "the-middle", "tier": "standard",
-      "coordinates": [39.0997, -94.5786], "dateStart": "2021-10-17", "dateEnd": "2021-10-22",
-      "days": 6, "dayOfTrip": 73, "state": "MO",
-      "nationalPark": null, "events": [], "notes": "", "photos": []
+      "id": "kansas-city",
+      "title": "Kansas City",
+      "chapter": "the-middle",
+      "tier": "standard",
+      "coordinates": [
+        39.0997,
+        -94.5786
+      ],
+      "dateStart": "2021-10-17",
+      "dateEnd": "2021-10-22",
+      "days": 6,
+      "dayOfTrip": 73,
+      "state": "MO",
+      "nationalPark": null,
+      "events": [],
+      "notes": "",
+      "photos": []
     },
     {
-      "id": "st-louis", "title": "St. Louis", "chapter": "the-middle", "tier": "standard",
-      "coordinates": [38.6270, -90.1994], "dateStart": "2021-10-23", "dateEnd": "2021-10-23",
-      "days": 1, "dayOfTrip": 79, "state": "MO",
-      "nationalPark": "Gateway Arch NP", "events": [], "notes": "Gateway Arch.", "photos": []
+      "id": "st-louis",
+      "title": "St. Louis",
+      "chapter": "the-middle",
+      "tier": "standard",
+      "coordinates": [
+        38.627,
+        -90.1994
+      ],
+      "dateStart": "2021-10-23",
+      "dateEnd": "2021-10-23",
+      "days": 1,
+      "dayOfTrip": 79,
+      "state": "MO",
+      "nationalPark": "Gateway Arch NP",
+      "events": [],
+      "notes": "Gateway Arch.",
+      "photos": []
     },
     {
-      "id": "mammoth-cave", "title": "Mammoth Cave", "chapter": "the-middle", "tier": "standard",
-      "coordinates": [37.1862, -86.1005], "dateStart": "2021-10-24", "dateEnd": "2021-10-24",
-      "days": 1, "dayOfTrip": 80, "state": "KY",
-      "nationalPark": "Mammoth Cave NP", "events": [], "notes": "Mammoth Cave National Park.", "photos": []
+      "id": "mammoth-cave",
+      "title": "Mammoth Cave",
+      "chapter": "the-middle",
+      "tier": "standard",
+      "coordinates": [
+        37.1862,
+        -86.1005
+      ],
+      "dateStart": "2021-10-24",
+      "dateEnd": "2021-10-24",
+      "days": 1,
+      "dayOfTrip": 80,
+      "state": "KY",
+      "nationalPark": "Mammoth Cave NP",
+      "events": [],
+      "notes": "Mammoth Cave National Park.",
+      "photos": []
     },
     {
-      "id": "columbus", "title": "Columbus", "chapter": "the-middle", "tier": "standard",
-      "coordinates": [39.9612, -82.9988], "dateStart": "2021-10-25", "dateEnd": "2021-10-29",
-      "days": 5, "dayOfTrip": 81, "state": "OH",
-      "nationalPark": null, "events": [], "notes": "", "photos": []
+      "id": "columbus",
+      "title": "Columbus",
+      "chapter": "the-middle",
+      "tier": "standard",
+      "coordinates": [
+        39.9612,
+        -82.9988
+      ],
+      "dateStart": "2021-10-25",
+      "dateEnd": "2021-10-29",
+      "days": 5,
+      "dayOfTrip": 81,
+      "state": "OH",
+      "nationalPark": null,
+      "events": [],
+      "notes": "",
+      "photos": []
     },
     {
-      "id": "cleveland", "title": "Cleveland", "chapter": "the-middle", "tier": "standard",
-      "coordinates": [41.4993, -81.6944], "dateStart": "2021-10-30", "dateEnd": "2021-10-30",
-      "days": 1, "dayOfTrip": 86, "state": "OH",
-      "nationalPark": "Cuyahoga Valley NP", "events": [], "notes": "Cuyahoga Valley National Park.", "photos": []
+      "id": "cleveland",
+      "title": "Cleveland",
+      "chapter": "the-middle",
+      "tier": "standard",
+      "coordinates": [
+        41.4993,
+        -81.6944
+      ],
+      "dateStart": "2021-10-30",
+      "dateEnd": "2021-10-30",
+      "days": 1,
+      "dayOfTrip": 86,
+      "state": "OH",
+      "nationalPark": "Cuyahoga Valley NP",
+      "events": [],
+      "notes": "Cuyahoga Valley National Park.",
+      "photos": []
     },
     {
-      "id": "boston", "title": "Boston", "chapter": "the-northeast", "tier": "marquee", "hasEntry": true,
-      "coordinates": [42.3601, -71.0589], "dateStart": "2021-10-31", "dateEnd": "2021-11-09",
-      "days": 8, "dayOfTrip": 87, "state": "MA",
-      "nationalPark": null, "events": [], "notes": "Base for exploring New England. Halloween arrival.", "photos": []
+      "id": "boston",
+      "title": "Boston",
+      "chapter": "the-northeast",
+      "tier": "marquee",
+      "hasEntry": true,
+      "coordinates": [
+        42.3601,
+        -71.0589
+      ],
+      "dateStart": "2021-10-31",
+      "dateEnd": "2021-11-09",
+      "days": 8,
+      "dayOfTrip": 87,
+      "state": "MA",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Base for exploring New England. Halloween arrival.",
+      "photos": []
     },
     {
-      "id": "portland-me", "title": "Portland", "chapter": "the-northeast", "tier": "postcard",
-      "coordinates": [43.6591, -70.2568], "dateStart": "2021-11-05", "dateEnd": "2021-11-05",
-      "days": 1, "dayOfTrip": 92, "state": "ME",
-      "nationalPark": null, "events": [], "notes": "The other Portland.", "photos": []
+      "id": "portland-me",
+      "title": "Portland",
+      "chapter": "the-northeast",
+      "tier": "postcard",
+      "coordinates": [
+        43.6591,
+        -70.2568
+      ],
+      "dateStart": "2021-11-05",
+      "dateEnd": "2021-11-05",
+      "days": 1,
+      "dayOfTrip": 92,
+      "state": "ME",
+      "nationalPark": null,
+      "events": [],
+      "notes": "The other Portland.",
+      "photos": []
     },
     {
-      "id": "bar-harbor", "title": "Bar Harbor", "chapter": "the-northeast", "tier": "standard",
-      "coordinates": [44.3876, -68.2039], "dateStart": "2021-11-06", "dateEnd": "2021-11-06",
-      "days": 1, "dayOfTrip": 93, "state": "ME",
-      "nationalPark": "Acadia NP", "events": [], "notes": "Acadia National Park. November in Maine.", "photos": []
+      "id": "bar-harbor",
+      "title": "Bar Harbor",
+      "chapter": "the-northeast",
+      "tier": "standard",
+      "coordinates": [
+        44.3876,
+        -68.2039
+      ],
+      "dateStart": "2021-11-06",
+      "dateEnd": "2021-11-06",
+      "days": 1,
+      "dayOfTrip": 93,
+      "state": "ME",
+      "nationalPark": "Acadia NP",
+      "events": [],
+      "notes": "Acadia National Park. November in Maine.",
+      "photos": []
     },
     {
-      "id": "niagara-falls", "title": "Niagara Falls", "chapter": "the-northeast", "tier": "standard",
-      "coordinates": [43.0962, -79.0377], "dateStart": "2021-11-10", "dateEnd": "2021-11-12",
-      "days": 3, "dayOfTrip": 97, "state": "NY/ON",
-      "nationalPark": null, "events": [], "notes": "Crossed into Canada.", "photos": []
+      "id": "niagara-falls",
+      "title": "Niagara Falls",
+      "chapter": "the-northeast",
+      "tier": "standard",
+      "coordinates": [
+        43.0962,
+        -79.0377
+      ],
+      "dateStart": "2021-11-10",
+      "dateEnd": "2021-11-12",
+      "days": 3,
+      "dayOfTrip": 97,
+      "state": "NY/ON",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Crossed into Canada.",
+      "photos": []
     },
     {
-      "id": "toronto", "title": "Toronto", "chapter": "the-northeast", "tier": "postcard",
-      "coordinates": [43.6532, -79.3832], "dateStart": "2021-11-13", "dateEnd": "2021-11-13",
-      "days": 1, "dayOfTrip": 100, "state": "ON",
-      "nationalPark": null, "events": [], "notes": "Day 100.", "photos": []
+      "id": "toronto",
+      "title": "Toronto",
+      "chapter": "the-northeast",
+      "tier": "postcard",
+      "coordinates": [
+        43.6532,
+        -79.3832
+      ],
+      "dateStart": "2021-11-13",
+      "dateEnd": "2021-11-13",
+      "days": 1,
+      "dayOfTrip": 100,
+      "state": "ON",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Day 100.",
+      "photos": []
     },
     {
-      "id": "state-college", "title": "State College", "chapter": "the-northeast", "tier": "postcard",
-      "coordinates": [40.7934, -77.8600], "dateStart": "2021-11-14", "dateEnd": "2021-11-14",
-      "days": 1, "dayOfTrip": 101, "state": "PA",
-      "nationalPark": null, "events": [], "notes": "", "photos": []
+      "id": "state-college",
+      "title": "State College",
+      "chapter": "the-northeast",
+      "tier": "postcard",
+      "coordinates": [
+        40.7934,
+        -77.86
+      ],
+      "dateStart": "2021-11-14",
+      "dateEnd": "2021-11-14",
+      "days": 1,
+      "dayOfTrip": 101,
+      "state": "PA",
+      "nationalPark": null,
+      "events": [],
+      "notes": "",
+      "photos": []
     },
     {
-      "id": "washington-dc", "title": "Washington, DC", "chapter": "the-capital-and-south", "tier": "marquee", "hasEntry": true,
-      "coordinates": [38.9072, -77.0369], "dateStart": "2021-11-15", "dateEnd": "2021-11-23",
-      "days": 9, "dayOfTrip": 102, "state": "DC",
-      "nationalPark": "Shenandoah NP", "events": [], "notes": "Nine days in the capital. Shenandoah NP day trip.", "photos": []
+      "id": "washington-dc",
+      "title": "Washington, DC",
+      "chapter": "the-capital-and-south",
+      "tier": "marquee",
+      "hasEntry": true,
+      "coordinates": [
+        38.9072,
+        -77.0369
+      ],
+      "dateStart": "2021-11-15",
+      "dateEnd": "2021-11-23",
+      "days": 9,
+      "dayOfTrip": 102,
+      "state": "DC",
+      "nationalPark": "Shenandoah NP",
+      "events": [],
+      "notes": "Nine days in the capital. Shenandoah NP day trip.",
+      "photos": []
     },
     {
-      "id": "virginia-beach", "title": "Virginia Beach", "chapter": "the-capital-and-south", "tier": "postcard",
-      "coordinates": [36.8529, -75.9780], "dateStart": "2021-11-24", "dateEnd": "2021-11-24",
-      "days": 1, "dayOfTrip": 111, "state": "VA",
-      "nationalPark": null, "events": [], "notes": "", "photos": []
+      "id": "virginia-beach",
+      "title": "Virginia Beach",
+      "chapter": "the-capital-and-south",
+      "tier": "postcard",
+      "coordinates": [
+        36.8529,
+        -75.978
+      ],
+      "dateStart": "2021-11-24",
+      "dateEnd": "2021-11-24",
+      "days": 1,
+      "dayOfTrip": 111,
+      "state": "VA",
+      "nationalPark": null,
+      "events": [],
+      "notes": "",
+      "photos": []
     },
     {
-      "id": "charlotte", "title": "Charlotte", "chapter": "the-capital-and-south", "tier": "postcard",
-      "coordinates": [35.2271, -80.8431], "dateStart": "2021-11-25", "dateEnd": "2021-11-25",
-      "days": 1, "dayOfTrip": 112, "state": "NC",
-      "nationalPark": null, "events": [], "notes": "Thanksgiving on the road.", "photos": []
+      "id": "charlotte",
+      "title": "Charlotte",
+      "chapter": "the-capital-and-south",
+      "tier": "postcard",
+      "coordinates": [
+        35.2271,
+        -80.8431
+      ],
+      "dateStart": "2021-11-25",
+      "dateEnd": "2021-11-25",
+      "days": 1,
+      "dayOfTrip": 112,
+      "state": "NC",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Thanksgiving on the road.",
+      "photos": []
     },
     {
-      "id": "columbia-sc", "title": "Columbia", "chapter": "the-capital-and-south", "tier": "standard",
-      "coordinates": [34.0007, -81.0348], "dateStart": "2021-11-26", "dateEnd": "2021-11-26",
-      "days": 1, "dayOfTrip": 113, "state": "SC",
-      "nationalPark": "Congaree NP", "events": [], "notes": "Congaree National Park.", "photos": []
+      "id": "columbia-sc",
+      "title": "Columbia",
+      "chapter": "the-capital-and-south",
+      "tier": "standard",
+      "coordinates": [
+        34.0007,
+        -81.0348
+      ],
+      "dateStart": "2021-11-26",
+      "dateEnd": "2021-11-26",
+      "days": 1,
+      "dayOfTrip": 113,
+      "state": "SC",
+      "nationalPark": "Congaree NP",
+      "events": [],
+      "notes": "Congaree National Park.",
+      "photos": []
     },
     {
-      "id": "charleston", "title": "Charleston", "chapter": "the-capital-and-south", "tier": "marquee", "hasEntry": true,
-      "coordinates": [32.7765, -79.9311], "dateStart": "2021-11-27", "dateEnd": "2021-12-04",
-      "days": 8, "dayOfTrip": 114, "state": "SC",
-      "nationalPark": null, "events": [], "notes": "A full week in Charleston.", "photos": []
+      "id": "charleston",
+      "title": "Charleston",
+      "chapter": "the-capital-and-south",
+      "tier": "marquee",
+      "hasEntry": true,
+      "coordinates": [
+        32.7765,
+        -79.9311
+      ],
+      "dateStart": "2021-11-27",
+      "dateEnd": "2021-12-04",
+      "days": 8,
+      "dayOfTrip": 114,
+      "state": "SC",
+      "nationalPark": null,
+      "events": [],
+      "notes": "A full week in Charleston.",
+      "photos": []
     },
     {
-      "id": "atlanta", "title": "Atlanta", "chapter": "the-capital-and-south", "tier": "standard",
-      "coordinates": [33.7490, -84.3880], "dateStart": "2021-12-05", "dateEnd": "2021-12-07",
-      "days": 3, "dayOfTrip": 122, "state": "GA",
-      "nationalPark": null, "events": [], "notes": "", "photos": []
+      "id": "atlanta",
+      "title": "Atlanta",
+      "chapter": "the-capital-and-south",
+      "tier": "standard",
+      "coordinates": [
+        33.749,
+        -84.388
+      ],
+      "dateStart": "2021-12-05",
+      "dateEnd": "2021-12-07",
+      "days": 3,
+      "dayOfTrip": 122,
+      "state": "GA",
+      "nationalPark": null,
+      "events": [],
+      "notes": "",
+      "photos": []
     },
     {
-      "id": "asheville", "title": "Asheville", "chapter": "mountain-rest", "tier": "marquee", "hasEntry": true,
-      "coordinates": [35.5951, -82.5515], "dateStart": "2021-12-08", "dateEnd": "2021-12-23",
-      "days": 16, "dayOfTrip": 125, "state": "NC",
-      "nationalPark": null, "events": [], "notes": "The longest stay. Mountains in winter. The trip's deep breath.", "photos": []
+      "id": "asheville",
+      "title": "Asheville",
+      "chapter": "mountain-rest",
+      "tier": "marquee",
+      "hasEntry": true,
+      "coordinates": [
+        35.5951,
+        -82.5515
+      ],
+      "dateStart": "2021-12-08",
+      "dateEnd": "2021-12-23",
+      "days": 16,
+      "dayOfTrip": 125,
+      "state": "NC",
+      "nationalPark": null,
+      "events": [],
+      "notes": "The longest stay. Mountains in winter. The trip's deep breath.",
+      "photos": []
     },
     {
-      "id": "savannah", "title": "Savannah", "chapter": "christmas-in-florida", "tier": "standard",
-      "coordinates": [32.0809, -81.0912], "dateStart": "2021-12-24", "dateEnd": "2021-12-24",
-      "days": 1, "dayOfTrip": 141, "state": "GA",
-      "nationalPark": null, "events": [], "notes": "Christmas Eve.", "photos": []
+      "id": "savannah",
+      "title": "Savannah",
+      "chapter": "christmas-in-florida",
+      "tier": "standard",
+      "coordinates": [
+        32.0809,
+        -81.0912
+      ],
+      "dateStart": "2021-12-24",
+      "dateEnd": "2021-12-24",
+      "days": 1,
+      "dayOfTrip": 141,
+      "state": "GA",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Christmas Eve.",
+      "photos": []
     },
     {
-      "id": "daytona-beach", "title": "Daytona Beach", "chapter": "christmas-in-florida", "tier": "postcard",
-      "coordinates": [29.2108, -81.0228], "dateStart": "2021-12-25", "dateEnd": "2021-12-25",
-      "days": 1, "dayOfTrip": 142, "state": "FL",
-      "nationalPark": null, "events": [], "notes": "Christmas Day on the road.", "photos": []
+      "id": "daytona-beach",
+      "title": "Daytona Beach",
+      "chapter": "christmas-in-florida",
+      "tier": "postcard",
+      "coordinates": [
+        29.2108,
+        -81.0228
+      ],
+      "dateStart": "2021-12-25",
+      "dateEnd": "2021-12-25",
+      "days": 1,
+      "dayOfTrip": 142,
+      "state": "FL",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Christmas Day on the road.",
+      "photos": []
     },
     {
-      "id": "miami", "title": "Miami", "chapter": "christmas-in-florida", "tier": "standard",
-      "coordinates": [25.7617, -80.1918], "dateStart": "2021-12-27", "dateEnd": "2021-12-27",
-      "days": 1, "dayOfTrip": 144, "state": "FL",
-      "nationalPark": "Everglades NP", "events": [], "notes": "Everglades National Park.", "photos": []
+      "id": "miami",
+      "title": "Miami",
+      "chapter": "christmas-in-florida",
+      "tier": "standard",
+      "coordinates": [
+        25.7617,
+        -80.1918
+      ],
+      "dateStart": "2021-12-27",
+      "dateEnd": "2021-12-27",
+      "days": 1,
+      "dayOfTrip": 144,
+      "state": "FL",
+      "nationalPark": "Everglades NP",
+      "events": [],
+      "notes": "Everglades National Park.",
+      "photos": []
     },
     {
-      "id": "florida-city", "title": "Florida City", "chapter": "christmas-in-florida", "tier": "standard",
-      "coordinates": [25.4479, -80.4791], "dateStart": "2021-12-28", "dateEnd": "2021-12-29",
-      "days": 2, "dayOfTrip": 145, "state": "FL",
-      "nationalPark": "Biscayne NP", "events": [], "notes": "Biscayne National Park. Everglades continued.", "photos": []
+      "id": "florida-city",
+      "title": "Florida City",
+      "chapter": "christmas-in-florida",
+      "tier": "standard",
+      "coordinates": [
+        25.4479,
+        -80.4791
+      ],
+      "dateStart": "2021-12-28",
+      "dateEnd": "2021-12-29",
+      "days": 2,
+      "dayOfTrip": 145,
+      "state": "FL",
+      "nationalPark": "Biscayne NP",
+      "events": [],
+      "notes": "Biscayne National Park. Everglades continued.",
+      "photos": []
     },
     {
-      "id": "key-west", "title": "Key West", "chapter": "christmas-in-florida", "tier": "marquee", "hasEntry": true,
-      "coordinates": [24.5551, -81.7800], "dateStart": "2021-12-30", "dateEnd": "2021-12-30",
-      "days": 1, "dayOfTrip": 147, "state": "FL",
-      "nationalPark": null, "events": [], "notes": "The southernmost point.", "photos": []
+      "id": "key-west",
+      "title": "Key West",
+      "chapter": "christmas-in-florida",
+      "tier": "marquee",
+      "hasEntry": true,
+      "coordinates": [
+        24.5551,
+        -81.78
+      ],
+      "dateStart": "2021-12-30",
+      "dateEnd": "2021-12-30",
+      "days": 1,
+      "dayOfTrip": 147,
+      "state": "FL",
+      "nationalPark": null,
+      "events": [],
+      "notes": "The southernmost point.",
+      "photos": []
     },
     {
-      "id": "miami-nye", "title": "Miami — NYE", "chapter": "christmas-in-florida", "tier": "standard",
-      "coordinates": [25.7617, -80.1918], "dateStart": "2021-12-31", "dateEnd": "2022-01-01",
-      "days": 2, "dayOfTrip": 148, "state": "FL",
-      "nationalPark": null, "events": [], "notes": "New Year's Eve in Miami.", "photos": []
+      "id": "miami-nye",
+      "title": "Miami \u2014 NYE",
+      "chapter": "christmas-in-florida",
+      "tier": "standard",
+      "coordinates": [
+        25.7617,
+        -80.1918
+      ],
+      "dateStart": "2021-12-31",
+      "dateEnd": "2022-01-01",
+      "days": 2,
+      "dayOfTrip": 148,
+      "state": "FL",
+      "nationalPark": null,
+      "events": [],
+      "notes": "New Year's Eve in Miami.",
+      "photos": []
     },
     {
-      "id": "tampa", "title": "Tampa", "chapter": "the-gulf-and-end", "tier": "postcard",
-      "coordinates": [27.9506, -82.4572], "dateStart": "2022-01-02", "dateEnd": "2022-01-02",
-      "days": 1, "dayOfTrip": 150, "state": "FL",
-      "nationalPark": null, "events": [], "notes": "Gulf coast.", "photos": []
+      "id": "tampa",
+      "title": "Tampa",
+      "chapter": "the-gulf-and-end",
+      "tier": "postcard",
+      "coordinates": [
+        27.9506,
+        -82.4572
+      ],
+      "dateStart": "2022-01-02",
+      "dateEnd": "2022-01-02",
+      "days": 1,
+      "dayOfTrip": 150,
+      "state": "FL",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Gulf coast.",
+      "photos": []
     },
     {
-      "id": "tallahassee", "title": "Tallahassee", "chapter": "the-gulf-and-end", "tier": "postcard",
-      "coordinates": [30.4383, -84.2807], "dateStart": "2022-01-03", "dateEnd": "2022-01-03",
-      "days": 1, "dayOfTrip": 151, "state": "FL",
-      "nationalPark": null, "events": [], "notes": "Passing through.", "photos": []
+      "id": "tallahassee",
+      "title": "Tallahassee",
+      "chapter": "the-gulf-and-end",
+      "tier": "postcard",
+      "coordinates": [
+        30.4383,
+        -84.2807
+      ],
+      "dateStart": "2022-01-03",
+      "dateEnd": "2022-01-03",
+      "days": 1,
+      "dayOfTrip": 151,
+      "state": "FL",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Passing through.",
+      "photos": []
     },
     {
-      "id": "mobile", "title": "Mobile", "chapter": "the-gulf-and-end", "tier": "standard",
-      "coordinates": [30.6954, -88.0399], "dateStart": "2022-01-04", "dateEnd": "2022-01-07",
-      "days": 4, "dayOfTrip": 152, "state": "AL",
-      "nationalPark": null, "events": [], "notes": "", "photos": []
+      "id": "mobile",
+      "title": "Mobile",
+      "chapter": "the-gulf-and-end",
+      "tier": "standard",
+      "coordinates": [
+        30.6954,
+        -88.0399
+      ],
+      "dateStart": "2022-01-04",
+      "dateEnd": "2022-01-07",
+      "days": 4,
+      "dayOfTrip": 152,
+      "state": "AL",
+      "nationalPark": null,
+      "events": [],
+      "notes": "",
+      "photos": []
     },
     {
-      "id": "baton-rouge", "title": "Baton Rouge", "chapter": "the-gulf-and-end", "tier": "postcard",
-      "coordinates": [30.4515, -91.1871], "dateStart": "2022-01-08", "dateEnd": "2022-01-08",
-      "days": 1, "dayOfTrip": 156, "state": "LA",
-      "nationalPark": null, "events": [], "notes": "Passing through.", "photos": []
+      "id": "baton-rouge",
+      "title": "Baton Rouge",
+      "chapter": "the-gulf-and-end",
+      "tier": "postcard",
+      "coordinates": [
+        30.4515,
+        -91.1871
+      ],
+      "dateStart": "2022-01-08",
+      "dateEnd": "2022-01-08",
+      "days": 1,
+      "dayOfTrip": 156,
+      "state": "LA",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Passing through.",
+      "photos": []
     },
     {
-      "id": "houston", "title": "Houston", "chapter": "the-gulf-and-end", "tier": "postcard",
-      "coordinates": [29.7604, -95.3698], "dateStart": "2022-01-09", "dateEnd": "2022-01-09",
-      "days": 1, "dayOfTrip": 157, "state": "TX",
-      "nationalPark": null, "events": [], "notes": "Passing through.", "photos": []
+      "id": "houston",
+      "title": "Houston",
+      "chapter": "the-gulf-and-end",
+      "tier": "postcard",
+      "coordinates": [
+        29.7604,
+        -95.3698
+      ],
+      "dateStart": "2022-01-09",
+      "dateEnd": "2022-01-09",
+      "days": 1,
+      "dayOfTrip": 157,
+      "state": "TX",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Passing through.",
+      "photos": []
     },
     {
-      "id": "austin", "title": "Austin", "chapter": "the-gulf-and-end", "tier": "marquee", "hasEntry": true,
-      "coordinates": [30.2672, -97.7431], "dateStart": "2022-01-10", "dateEnd": "2022-01-16",
-      "days": 7, "dayOfTrip": 158, "state": "TX",
-      "nationalPark": null, "events": [], "notes": "A week in Austin.", "photos": []
+      "id": "austin",
+      "title": "Austin",
+      "chapter": "the-gulf-and-end",
+      "tier": "marquee",
+      "hasEntry": true,
+      "coordinates": [
+        30.2672,
+        -97.7431
+      ],
+      "dateStart": "2022-01-10",
+      "dateEnd": "2022-01-16",
+      "days": 7,
+      "dayOfTrip": 158,
+      "state": "TX",
+      "nationalPark": null,
+      "events": [],
+      "notes": "A week in Austin.",
+      "photos": []
     },
     {
-      "id": "carlsbad", "title": "Carlsbad", "chapter": "the-gulf-and-end", "tier": "standard",
-      "coordinates": [32.4207, -104.2288], "dateStart": "2022-01-17", "dateEnd": "2022-01-18",
-      "days": 2, "dayOfTrip": 165, "state": "NM",
-      "nationalPark": null, "events": [], "notes": "", "photos": []
+      "id": "carlsbad",
+      "title": "Carlsbad",
+      "chapter": "the-gulf-and-end",
+      "tier": "standard",
+      "coordinates": [
+        32.4207,
+        -104.2288
+      ],
+      "dateStart": "2022-01-17",
+      "dateEnd": "2022-01-18",
+      "days": 2,
+      "dayOfTrip": 165,
+      "state": "NM",
+      "nationalPark": null,
+      "events": [],
+      "notes": "",
+      "photos": []
     },
     {
-      "id": "tucson", "title": "Tucson", "chapter": "the-gulf-and-end", "tier": "postcard",
-      "coordinates": [32.2226, -110.9747], "dateStart": "2022-01-19", "dateEnd": "2022-01-19",
-      "days": 1, "dayOfTrip": 167, "state": "AZ",
-      "nationalPark": null, "events": [], "notes": "", "photos": []
+      "id": "tucson",
+      "title": "Tucson",
+      "chapter": "the-gulf-and-end",
+      "tier": "postcard",
+      "coordinates": [
+        32.2226,
+        -110.9747
+      ],
+      "dateStart": "2022-01-19",
+      "dateEnd": "2022-01-19",
+      "days": 1,
+      "dayOfTrip": 167,
+      "state": "AZ",
+      "nationalPark": null,
+      "events": [],
+      "notes": "",
+      "photos": []
     },
     {
-      "id": "phoenix", "title": "Phoenix", "chapter": "the-gulf-and-end", "tier": "standard",
-      "coordinates": [33.4484, -112.0740], "dateStart": "2022-01-20", "dateEnd": "2022-01-20",
-      "days": 1, "dayOfTrip": 168, "state": "AZ",
-      "nationalPark": null, "events": [], "notes": "The motion stops.", "photos": []
+      "id": "phoenix",
+      "title": "Phoenix",
+      "chapter": "the-gulf-and-end",
+      "tier": "standard",
+      "coordinates": [
+        33.4484,
+        -112.074
+      ],
+      "dateStart": "2022-01-20",
+      "dateEnd": "2022-01-20",
+      "days": 1,
+      "dayOfTrip": 168,
+      "state": "AZ",
+      "nationalPark": null,
+      "events": [],
+      "notes": "The motion stops.",
+      "photos": []
     }
   ]
 }
