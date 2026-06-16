@@ -257,6 +257,32 @@
   color: var(--accent-hover);
 }
 
+/* --- Linked Stops --- */
+.panel-linked-stops {
+  margin-bottom: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.panel-linked-stops:empty {
+  display: none;
+}
+
+.linked-stop-link {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--accent);
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out);
+  display: inline-flex;
+  align-items: center;
+}
+
+.linked-stop-link:hover {
+  color: var(--accent-hover);
+}
+
 /* --- Photo Gallery --- */
 .panel-photos {
   display: grid;

@@ -167,6 +167,28 @@ function populatePanel(stop) {
     entryLinkEl.innerHTML = '';
   }
 
+  // Linked Stops (with stagger)
+  const linkedStopsEl = document.getElementById('panel-linked-stops');
+  if (linkedStopsEl) {
+    linkedStopsEl.className = 'panel-linked-stops stagger-in stagger-4';
+    linkedStopsEl.innerHTML = '';
+    
+    if (stop.linkedStops && stop.linkedStops.length > 0) {
+      const linkedLinks = stop.linkedStops.map(linkedId => {
+        const linkedStop = getStop(linkedId);
+        if (!linkedStop) return '';
+        return `<span class="linked-stop-link" data-id="${linkedId}">Also visited: ${linkedStop.title} &rarr;</span>`;
+      }).join('');
+      linkedStopsEl.innerHTML = linkedLinks;
+      
+      linkedStopsEl.querySelectorAll('.linked-stop-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          openPanel(e.target.dataset.id);
+        });
+      });
+    }
+  }
+
   // Hero image
   const heroImg = document.getElementById('panel-hero-img');
   const heroContainer = document.querySelector('.panel-hero');

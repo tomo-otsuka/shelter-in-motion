@@ -189,6 +189,25 @@
       "photos": []
     },
     {
+      "id": "incline-village",
+      "title": "Incline Village",
+      "chapter": "the-burn",
+      "tier": "postcard",
+      "coordinates": [
+        39.2513,
+        -119.953
+      ],
+      "dateStart": "2021-09-05",
+      "dateEnd": "2021-09-05",
+      "days": 1,
+      "dayOfTrip": 31,
+      "state": "NV",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Post-burn decompression. Lake Tahoe's north shore.",
+      "photos": []
+    },
+    {
       "id": "los-angeles",
       "title": "Los Angeles",
       "chapter": "the-la-chapter",
@@ -735,10 +754,31 @@
       "photos": []
     },
     {
+      "id": "fort-lauderdale",
+      "title": "Fort Lauderdale",
+      "chapter": "christmas-in-florida",
+      "tier": "postcard",
+      "linkedStops": ["fort-lauderdale-return"],
+      "coordinates": [
+        26.1224,
+        -80.1373
+      ],
+      "dateStart": "2021-12-26",
+      "dateEnd": "2021-12-26",
+      "days": 1,
+      "dayOfTrip": 143,
+      "state": "FL",
+      "nationalPark": null,
+      "events": [],
+      "notes": "Gateway to the Keys.",
+      "photos": []
+    },
+    {
       "id": "miami",
       "title": "Miami",
       "chapter": "christmas-in-florida",
       "tier": "standard",
+      "linkedStops": ["miami-nye"],
       "coordinates": [
         25.7617,
         -80.1918
@@ -797,18 +837,39 @@
       "title": "Miami \u2014 NYE",
       "chapter": "christmas-in-florida",
       "tier": "standard",
+      "linkedStops": ["miami"],
       "coordinates": [
         25.7617,
         -80.1918
       ],
       "dateStart": "2021-12-31",
-      "dateEnd": "2022-01-01",
-      "days": 2,
+      "dateEnd": "2021-12-31",
+      "days": 1,
       "dayOfTrip": 148,
       "state": "FL",
       "nationalPark": null,
       "events": [],
       "notes": "New Year's Eve in Miami.",
+      "photos": []
+    },
+    {
+      "id": "fort-lauderdale-return",
+      "title": "Fort Lauderdale",
+      "chapter": "christmas-in-florida",
+      "tier": "postcard",
+      "linkedStops": ["fort-lauderdale"],
+      "coordinates": [
+        26.1224,
+        -80.1373
+      ],
+      "dateStart": "2022-01-01",
+      "dateEnd": "2022-01-01",
+      "days": 1,
+      "dayOfTrip": 149,
+      "state": "FL",
+      "nationalPark": null,
+      "events": [],
+      "notes": "New Year's Day. Back through Fort Lauderdale heading north.",
       "photos": []
     },
     {
