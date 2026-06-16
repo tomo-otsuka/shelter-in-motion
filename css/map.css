@@ -139,8 +139,9 @@
 .stop-marker.active {
   background: var(--accent-hover);
   transform: scale(2);
-  box-shadow: 0 0 0 2px var(--accent-hover),
-              0 0 24px var(--route-glow);
+  box-shadow: 0 0 0 3px var(--accent-hover),
+              0 0 32px rgba(196, 149, 106, 0.35);
+  z-index: 1000 !important;
 }
 
 /* Origin marker (SF) */
@@ -194,6 +195,30 @@
 
 .leaflet-control-attribution a {
   color: var(--text-secondary) !important;
+}
+
+/* --- Custom Marker Tooltips --- */
+.marker-tooltip {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 3px !important;
+  padding: 4px 10px !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.6rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+  white-space: nowrap !important;
+}
+
+.marker-tooltip::before {
+  border-top-color: var(--border) !important;
+}
+
+.marker-tooltip.leaflet-tooltip-top::before {
+  border-top-color: var(--border) !important;
 }
 
 /* --- Leaflet popup overrides --- */

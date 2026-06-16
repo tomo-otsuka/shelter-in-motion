@@ -2,7 +2,8 @@
  * Stop detail panel for Shelter in Motion.
  *
  * Handles the slide-in panel that shows stop details, photos,
- * and prev/next navigation.
+ * and prev/next navigation. Integrates with the lightbox for
+ * full-screen photo viewing.
  */
 
 import { getStop, getStopIndex, getStopByIndex, getStopCount, getChapter } from './data.js';
@@ -10,6 +11,9 @@ import { setActiveMarker, flyToStop, dimMap } from './map.js';
 
 let currentStopId = null;
 let panelEl = null;
+
+/** Will be set after lightbox module loads */
+let lightboxModule = null;
 
 /**
  * Initialize panel DOM references and event listeners.
@@ -22,9 +26,25 @@ export function initPanel() {
   document.getElementById('panel-next').addEventListener('click', () => navigateStop(1));
 
   document.addEventListener('keydown', (e) => {
+    // Don't handle keyboard when lightbox is open — let lightbox handle it
+    if (document.body.classList.contains('lightbox-no-scroll')) return;
+
     if (e.key === 'Escape') closePanel();
     if (e.key === 'ArrowLeft' && currentStopId) navigateStop(-1);
     if (e.key === 'ArrowRight' && currentStopId) navigateStop(1);
+  });
+
+  // Scroll tracking for bottom indicator fade
+  panelEl.addEventListener('scroll', () => {
+    const isAtBottom = panelEl.scrollHeight - panelEl.scrollTop - panelEl.clientHeight < 24;
+    panelEl.classList.toggle('scrolled-bottom', isAtBottom);
+  });
+
+  // Dynamically import lightbox module
+  import('./lightbox.js').then(mod => {
+    lightboxModule = mod;
+  }).catch(() => {
+    console.warn('Lightbox module not available');
   });
 }
 
@@ -36,12 +56,25 @@ export function openPanel(stopId) {
   if (!stop) return;
 
   currentStopId = stopId;
+
+  // Scroll panel to top before populating
+  panelEl.scrollTop = 0;
+
   populatePanel(stop);
   panelEl.classList.add('open');
   dimMap(true);
   setActiveMarker(stopId);
   flyToStop(stopId);
   updateNavState();
+
+  // Trigger stagger animations after a frame
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      panelEl.querySelectorAll('.stagger-in').forEach(el => {
+        el.classList.add('visible');
+      });
+    });
+  });
 }
 
 /**
@@ -49,6 +82,12 @@ export function openPanel(stopId) {
  */
 export function closePanel() {
   panelEl.classList.remove('open');
+
+  // Reset stagger states for next open
+  panelEl.querySelectorAll('.stagger-in').forEach(el => {
+    el.classList.remove('visible');
+  });
+
   currentStopId = null;
   setActiveMarker(null);
   dimMap(false);
@@ -75,18 +114,28 @@ function navigateStop(direction) {
 function populatePanel(stop) {
   const chapter = getChapter(stop.chapter);
 
-  // Meta
-  document.getElementById('panel-chapter').textContent =
-    chapter ? `Ch. ${chapter.number} — ${chapter.title}` : '';
-  document.getElementById('panel-dates').textContent = formatDateRange(stop.dateStart, stop.dateEnd);
+  // Meta (with stagger)
+  const chapterEl = document.getElementById('panel-chapter');
+  chapterEl.textContent = chapter ? `Ch. ${chapter.number} — ${chapter.title}` : '';
+  chapterEl.className = 'panel-chapter stagger-in stagger-1';
 
-  // Title & location
-  document.getElementById('panel-title').textContent = stop.title;
-  document.getElementById('panel-location').textContent = buildLocationLine(stop);
+  const datesEl = document.getElementById('panel-dates');
+  datesEl.textContent = formatDateRange(stop.dateStart, stop.dateEnd);
+  datesEl.className = 'panel-dates stagger-in stagger-1';
 
-  // Highlights (national parks, events)
+  // Title & location (with stagger)
+  const titleEl = document.getElementById('panel-title');
+  titleEl.textContent = stop.title;
+  titleEl.className = 'panel-title stagger-in stagger-2';
+
+  const locationEl = document.getElementById('panel-location');
+  locationEl.textContent = buildLocationLine(stop);
+  locationEl.className = 'panel-location stagger-in stagger-2';
+
+  // Highlights (national parks, events) (with stagger)
   const highlightsEl = document.getElementById('panel-highlights');
   highlightsEl.innerHTML = '';
+  highlightsEl.className = 'panel-highlights stagger-in stagger-3';
 
   if (stop.nationalPark) {
     const tag = document.createElement('span');
@@ -104,11 +153,14 @@ function populatePanel(stop) {
     });
   }
 
-  // Notes
-  document.getElementById('panel-notes').textContent = stop.notes || '';
+  // Notes (with stagger)
+  const notesEl = document.getElementById('panel-notes');
+  notesEl.textContent = stop.notes || '';
+  notesEl.className = 'panel-notes stagger-in stagger-4';
 
-  // Entry Link
+  // Entry Link (with stagger)
   const entryLinkEl = document.getElementById('panel-entry-link');
+  entryLinkEl.className = 'panel-entry-link stagger-in stagger-4';
   if (stop.hasEntry) {
     entryLinkEl.innerHTML = `<a href="entries/${stop.id}.html" class="read-more-link">Read the full entry &rarr;</a>`;
   } else {
@@ -118,25 +170,56 @@ function populatePanel(stop) {
   // Hero image
   const heroImg = document.getElementById('panel-hero-img');
   const heroContainer = document.querySelector('.panel-hero');
+  const photoCountEl = document.getElementById('panel-photo-count');
 
   if (stop.photos && stop.photos.length > 0) {
+    // Show loading shimmer
+    heroContainer.classList.add('loading');
+    heroContainer.classList.remove('empty');
+    heroContainer.removeAttribute('data-empty');
+
     heroImg.src = `assets/images/${stop.id}/${stop.photos[0]}`;
     heroImg.alt = stop.title;
     heroImg.classList.remove('loaded');
-    heroImg.onload = () => heroImg.classList.add('loaded');
-    heroContainer.classList.remove('empty');
-    heroContainer.removeAttribute('data-empty');
+    heroImg.onload = () => {
+      heroImg.classList.add('loaded');
+      heroContainer.classList.remove('loading');
+    };
+    heroImg.onerror = () => {
+      heroContainer.classList.remove('loading');
+    };
+
+    // Photo count badge
+    if (photoCountEl) {
+      photoCountEl.textContent = `${stop.photos.length} photo${stop.photos.length !== 1 ? 's' : ''}`;
+    }
+
+    // Hero click → open lightbox at index 0
+    heroContainer.onclick = () => {
+      if (lightboxModule && stop.photos && stop.photos.length > 0) {
+        const photoUrls = stop.photos.map(p => `assets/images/${stop.id}/${p}`);
+        lightboxModule.openLightbox(photoUrls, 0, stop.title);
+      }
+    };
   } else {
     heroImg.src = '';
     heroImg.alt = '';
     heroImg.classList.remove('loaded');
     heroContainer.classList.add('empty');
+    heroContainer.classList.remove('loading');
     heroContainer.setAttribute('data-empty', 'photos coming soon');
+    heroContainer.onclick = null;
+    heroContainer.style.cursor = 'default';
+
+    if (photoCountEl) {
+      photoCountEl.textContent = '';
+    }
   }
 
-  // Photo gallery (additional photos beyond the hero)
+  // Photo gallery (additional photos beyond the hero) (with stagger)
   const photosEl = document.getElementById('panel-photos');
   photosEl.innerHTML = '';
+  photosEl.className = 'panel-photos stagger-in stagger-5';
 
   if (stop.photos && stop.photos.length > 1) {
     stop.photos.slice(1).forEach((photo, i) => {
@@ -146,6 +229,15 @@ function populatePanel(stop) {
       img.className = 'photo';
       img.loading = 'lazy';
       img.style.animationDelay = `${(i + 1) * 100}ms`;
+
+      // Gallery image click → open lightbox at this index
+      img.addEventListener('click', () => {
+        if (lightboxModule && stop.photos) {
+          const photoUrls = stop.photos.map(p => `assets/images/${stop.id}/${p}`);
+          lightboxModule.openLightbox(photoUrls, i + 1, stop.title);
+        }
+      });
+
       photosEl.appendChild(img);
     });
   }

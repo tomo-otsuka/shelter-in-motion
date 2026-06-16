@@ -6,8 +6,8 @@
  */
 
 import { loadAllData } from './data.js';
-import { initMap, addRoute, addOriginMarker, addMarkers, showAllMarkers, setMarkerClickHandler } from './map.js';
-import { initPanel, openPanel } from './panel.js';
+import { initMap, addRoute, addOriginMarker, addMarkers, showAllMarkers, setMarkerClickHandler, setMapClickHandler } from './map.js';
+import { initPanel, openPanel, closePanel } from './panel.js';
 import { animateRoute } from './animation.js';
 
 async function init() {
@@ -36,7 +36,12 @@ async function init() {
     openPanel(stopId);
   });
 
-  // 6. Wire the Explore button
+  // 6. Wire map background clicks to close the panel
+  setMapClickHandler(() => {
+    closePanel();
+  });
+
+  // 7. Wire the Explore button
   const exploreBtn = document.getElementById('explore-btn');
   const landingOverlay = document.getElementById('landing-overlay');
 

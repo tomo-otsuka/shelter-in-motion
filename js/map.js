@@ -17,6 +17,9 @@ let activeMarkerId = null;
 /** Callback set by main.js for marker clicks */
 let onMarkerClick = null;
 
+/** Callback set by main.js for map background clicks */
+let onMapClick = null;
+
 const ORIGIN = [37.7749, -122.4194]; // San Francisco
 
 /**
@@ -52,6 +55,19 @@ export function initMap() {
  */
 export function setMarkerClickHandler(callback) {
   onMarkerClick = callback;
+}
+
+/**
+ * Register a callback for map background clicks (non-marker).
+ * @param {function()} callback - Called when the map background is clicked.
+ */
+export function setMapClickHandler(callback) {
+  onMapClick = callback;
+  if (map) {
+    map.on('click', () => {
+      if (onMapClick) onMapClick();
+    });
+  }
 }
 
 /**
@@ -111,7 +127,16 @@ export function addMarkers() {
 
     const marker = L.marker(stop.coordinates, { icon }).addTo(map);
 
-    marker.on('click', () => {
+    // Tooltip with stop title on hover
+    marker.bindTooltip(stop.title, {
+      permanent: false,
+      direction: 'top',
+      offset: [0, -(size / 2 + 4)],
+      className: 'marker-tooltip',
+    });
+
+    marker.on('click', (e) => {
+      L.DomEvent.stopPropagation(e);
       if (onMarkerClick) onMarkerClick(stop.id);
     });
 

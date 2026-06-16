@@ -16,34 +16,41 @@
   transition: transform var(--duration-normal) var(--ease-out);
   overflow-y: auto;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 .stop-panel.open {
   transform: translateX(0);
 }
 
-/* --- Close Button --- */
+/* --- Close Button (overlay pill on hero) --- */
 .panel-close {
-  position: sticky;
-  top: 0;
-  float: right;
-  z-index: 10;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 20;
   font-family: var(--font-body);
-  font-size: 1.5rem;
-  color: var(--text-secondary);
-  background: var(--bg-surface);
-  border: none;
-  width: 48px;
-  height: 48px;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  background: rgba(13, 11, 9, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(51, 45, 36, 0.5);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
-  transition: color var(--duration-fast);
+  transition: all var(--duration-fast) var(--ease-out);
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
 }
 
 .panel-close:hover {
-  color: var(--text-primary);
+  background: rgba(13, 11, 9, 0.85);
+  color: var(--accent);
+  transform: scale(1.1);
 }
 
 /* --- Hero Image --- */
@@ -53,6 +60,7 @@
   overflow: hidden;
   background: var(--bg-elevated);
   position: relative;
+  cursor: zoom-in;
 }
 
 .panel-hero::after {
@@ -93,6 +101,44 @@
   color: var(--text-caption);
   text-transform: uppercase;
   z-index: 1;
+}
+
+/* Loading shimmer state */
+.panel-hero.loading {
+  background: linear-gradient(
+    90deg,
+    var(--bg-elevated) 25%,
+    var(--border) 50%,
+    var(--bg-elevated) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+/* Photo count badge */
+.panel-photo-count {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 15;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background: rgba(13, 11, 9, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(51, 45, 36, 0.4);
+  border-radius: 3px;
+  padding: 3px 8px;
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.panel-hero:not(.empty) .panel-photo-count {
+  opacity: 1;
 }
 
 /* --- Panel Body --- */
@@ -228,14 +274,16 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 2px;
-  cursor: pointer;
-  transition: transform var(--duration-fast) var(--ease-out);
+  cursor: zoom-in;
+  transition: transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
   opacity: 0;
   animation: fadeIn 0.4s ease forwards;
 }
 
 .panel-photos img:hover {
-  transform: scale(1.03);
+  transform: scale(1.03) translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* First photo spans full width */
@@ -274,6 +322,37 @@
   color: var(--text-caption);
   cursor: default;
   opacity: 0.3;
+}
+
+/* --- Keyboard Hint --- */
+.panel-kbd-hint {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  color: var(--text-caption);
+  letter-spacing: 0.04em;
+  text-align: center;
+  margin-top: var(--space-sm);
+  opacity: 0.5;
+}
+
+/* --- Scroll Indicator --- */
+.stop-panel::after {
+  content: '';
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  height: 48px;
+  background: linear-gradient(to top, var(--bg-surface) 20%, transparent);
+  pointer-events: none;
+  z-index: 5;
+  opacity: 1;
+  transition: opacity var(--duration-fast);
+}
+
+.stop-panel.scrolled-bottom::after {
+  opacity: 0;
 }
 
 .panel-counter {
@@ -318,14 +397,11 @@
   }
 
   .panel-close {
-    position: absolute;
-    top: var(--space-sm);
-    right: var(--space-sm);
-    background: rgba(26, 23, 20, 0.85);
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    font-size: 1.25rem;
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
   }
 
   .panel-title {

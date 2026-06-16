@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/map.css">
   <link rel="stylesheet" href="css/panel.css">
+  <link rel="stylesheet" href="css/lightbox.css">
 </head>
 <body>
 
@@ -51,30 +52,35 @@
 
   <!-- Stop detail panel -->
   <aside id="stop-panel" class="stop-panel" aria-label="Stop details">
-    <button id="panel-close" class="panel-close" aria-label="Close panel">&times;</button>
     <div class="panel-content">
       <div class="panel-hero" data-empty="photos coming soon">
+        <button id="panel-close" class="panel-close" aria-label="Close panel">&times;</button>
         <img id="panel-hero-img" class="panel-hero-img photo" src="" alt="">
+        <span id="panel-photo-count" class="panel-photo-count"></span>
       </div>
       <div class="panel-body">
         <div class="panel-meta">
-          <span id="panel-chapter" class="panel-chapter"></span>
-          <span id="panel-dates" class="panel-dates"></span>
+          <span id="panel-chapter" class="panel-chapter stagger-in stagger-1"></span>
+          <span id="panel-dates" class="panel-dates stagger-in stagger-1"></span>
         </div>
-        <h2 id="panel-title" class="panel-title"></h2>
-        <div id="panel-location" class="panel-location"></div>
-        <div id="panel-highlights" class="panel-highlights"></div>
-        <p id="panel-notes" class="panel-notes"></p>
-        <div id="panel-entry-link" class="panel-entry-link"></div>
-        <div id="panel-photos" class="panel-photos"></div>
-        <nav class="panel-nav" aria-label="Stop navigation">
+        <h2 id="panel-title" class="panel-title stagger-in stagger-2"></h2>
+        <div id="panel-location" class="panel-location stagger-in stagger-2"></div>
+        <div id="panel-highlights" class="panel-highlights stagger-in stagger-3"></div>
+        <p id="panel-notes" class="panel-notes stagger-in stagger-4"></p>
+        <div id="panel-entry-link" class="panel-entry-link stagger-in stagger-4"></div>
+        <div id="panel-photos" class="panel-photos stagger-in stagger-5"></div>
+        <nav class="panel-nav stagger-in stagger-6" aria-label="Stop navigation">
           <button id="panel-prev" class="panel-nav-btn" aria-label="Previous stop">&larr; Previous</button>
           <span id="panel-counter" class="panel-counter"></span>
           <button id="panel-next" class="panel-nav-btn" aria-label="Next stop">Next &rarr;</button>
         </nav>
+        <div class="panel-kbd-hint" aria-hidden="true">← → to navigate · esc to close</div>
       </div>
     </div>
   </aside>
+
+  <!-- Lightbox container (populated by JS) -->
+  <div id="lightbox-container"></div>
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
