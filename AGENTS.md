@@ -59,7 +59,7 @@ Guidance for AI agents working on this repository.
 
 When an agent is tasked with sorting through a bulk folder of uncurated, user-provided photos, it should follow this systematic approach:
 
-1. **Initial Grouping via Metadata:** If EXIF data is still present in the uncurated batch, use timestamps to roughly bucket photos into stops based on the itinerary in `assets/data/stops.json`.
+1. **Initial Grouping via Metadata:** The raw photo batch will generally be in chronological order. Use file timestamps (or EXIF data if present) to step through the timeline and easily bucket photos into stops based on the dates in the `assets/data/stops.json` itinerary. This avoids needing to guess locations visually.
 2. **Visual Assessment:** Use the `view_file` tool to inspect the visual content of the photos in each bucket. Evaluate based on:
    - **Aesthetic:** Does it fit the warm, dark, cinematic, reflective tone?
    - **Subject:** Does it capture the vibe of the specific location (e.g. empty highways, neon signs, nature)?
