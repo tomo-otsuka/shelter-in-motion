@@ -55,6 +55,25 @@ Guidance for AI agents working on this repository.
 - Entries should follow a consistent template with: title, date, location, photos, and written text.
 - Photos referenced in entries should use relative paths to `assets/images/`.
 
+## AI Image Curation Process
+
+When an agent is tasked with sorting through a bulk folder of uncurated, user-provided photos, it should follow this systematic approach:
+
+1. **Initial Grouping via Metadata:** If EXIF data is still present in the uncurated batch, use timestamps to roughly bucket photos into stops based on the itinerary in `assets/data/stops.json`.
+2. **Visual Assessment:** Use the `view_file` tool to inspect the visual content of the photos in each bucket. Evaluate based on:
+   - **Aesthetic:** Does it fit the warm, dark, cinematic, reflective tone?
+   - **Subject:** Does it capture the vibe of the specific location (e.g. empty highways, neon signs, nature)?
+   - **Quality:** Is the subject clear and the composition engaging?
+3. **Selection & Role Assignment:** For each stop in the itinerary:
+   - Select **1 Hero Image:** A strong establishing wide-shot that represents the mood of the stop.
+   - Select **2-5 Gallery Images:** Supporting shots that provide detail or texture (close-ups, interesting landmarks, candid moments).
+   - *Discard the rest.*
+4. **Processing & Pipeline Setup:** For the selected photos, prepare them for the repository:
+   - Rename the files to descriptive, URL-safe names (e.g., `bend-oregon-highway.webp`).
+   - Move them into the appropriate `assets/images/<stop-id>/` directory.
+   - Run the mandatory optimization and **CRITICAL EXIF stripping** step (e.g., `exiftool -all=`).
+   - Update `assets/data/stops.json` with the assigned filenames for each stop.
+
 ## Testing & Validation
 
 - Open `index.html` in a browser to preview — no server required (though a local server avoids CORS issues with fetch).
