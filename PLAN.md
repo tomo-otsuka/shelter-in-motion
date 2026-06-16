@@ -431,6 +431,8 @@ Everything below is built and functional:
 | Trip data: route path | `assets/data/route.geojson` | ✅ Done | 56 waypoints, straight-line connections (simplified) |
 | Trip data: 10 chapters | `assets/data/chapters.json` | ✅ Done | Titles, date ranges, descriptions |
 | Raw itinerary backup | `assets/data/itinerary-raw.tsv` | ✅ Done | PII scrubbed |
+| Marquee entry page template | `entries/seattle.html`, `css/entry.css` | ✅ Done | Template created; ready to clone for other marquee stops |
+| Panel links to entry pages | `js/panel.js`, `stops.json` | ✅ Done | `hasEntry: true` added to marquee stops and link added to panel |
 
 ### ⬜ NOT YET DONE — Backlog
 
@@ -524,6 +526,7 @@ Replace the coordinates in `route.geojson` with a denser set of waypoints that f
 
 ### Task 4: Create Entry Pages for Marquee Stops
 **Priority:** MEDIUM — only needed for the ~12 richest stops.
+**Status:** 🚧 IN PROGRESS — The `seattle.html` template and `entry.css` are built. `stops.json` and `panel.js` are wired up. Remaining work is to clone the template for the other 11 marquee stops.
 **Difficulty:** Medium (HTML + CSS)
 
 #### What to do:
