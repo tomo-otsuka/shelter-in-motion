@@ -10,16 +10,18 @@ timestamp data are stored in companion .json files rather than embedded
 in the image's EXIF header.
 
 Usage:
-    python3 scripts/batch-match.py [takeout_dir] [stops_file]
+    python3 scripts/batch-match.py [takeout_dir] [stops_file] [--stage staging_dir]
 
 Defaults:
     takeout_dir = ./takeout
     stops_file  = assets/data/stops.json
 """
 
+import argparse
 import json
 import math
 import os
+import shutil
 import sys
 from collections import defaultdict
 from datetime import datetime, timedelta
@@ -338,15 +340,49 @@ def print_summary(match_data, stops):
             print(f"  ... and {len(no_gps) - 30} more (see JSON for full list)")
 
 
-def main():
-    if len(sys.argv) > 1:
-        takeout_dir = sys.argv[1]
-    else:
-        takeout_dir = "./takeout"
+def copy_to_staging(match_data, staging_dir):
+    """Copy matched photos into staging directories by stop ID."""
+    print("=" * 80)
+    print(f"COPYING TO STAGING: {staging_dir}")
+    print("=" * 80)
+    results = match_data["results"]
+    
+    os.makedirs(staging_dir, exist_ok=True)
+    
+    for stop_id, photos in results.items():
+        if not photos:
+            continue
+            
+        stop_dir = os.path.join(staging_dir, stop_id)
+        os.makedirs(stop_dir, exist_ok=True)
+        
+        copied = 0
+        for p in photos:
+            src_path = p["path"]
+            filename = p["file"]
+            dest_path = os.path.join(stop_dir, filename)
+            
+            # Avoid re-copying if it already exists
+            if not os.path.exists(dest_path):
+                try:
+                    shutil.copy2(src_path, dest_path)
+                    copied += 1
+                except Exception as e:
+                    print(f"  Error copying {src_path}: {e}")
+                    
+        print(f"  {stop_id:25s} : copied {copied} new files")
 
-    if len(sys.argv) > 2:
-        stops_file = sys.argv[2]
-    else:
+
+def main():
+    parser = argparse.ArgumentParser(description="Match photos to trip stops.")
+    parser.add_argument("takeout_dir", nargs="?", default="./takeout", help="Directory containing Takeout photos")
+    parser.add_argument("stops_file", nargs="?", default="", help="Path to stops.json")
+    parser.add_argument("--stage", dest="staging_dir", help="Directory to copy matched photos into (organized by stop)")
+    args = parser.parse_args()
+
+    takeout_dir = args.takeout_dir
+    stops_file = args.stops_file
+    if not stops_file:
         stops_file = os.path.join(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
             "assets",
@@ -361,6 +397,8 @@ def main():
 
     print(f"Takeout directory : {takeout_dir}")
     print(f"Stops file        : {stops_file}")
+    if args.staging_dir:
+        print(f"Staging directory : {args.staging_dir}")
     print(f"Stops loaded      : {len(stops)}")
     print()
 
@@ -388,6 +426,11 @@ def main():
         json.dump(match_data, f, indent=2)
     print()
     print(f"Results saved to {output_file}")
+
+    # Copy to staging if requested
+    if args.staging_dir:
+        print()
+        copy_to_staging(match_data, args.staging_dir)
 
 
 if __name__ == "__main__":
