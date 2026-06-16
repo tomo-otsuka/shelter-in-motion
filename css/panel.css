@@ -190,6 +190,27 @@
   display: none;
 }
 
+/* --- Entry Link --- */
+.panel-entry-link {
+  margin-bottom: var(--space-lg);
+}
+
+.panel-entry-link:empty {
+  display: none;
+}
+
+.read-more-link {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.read-more-link:hover {
+  color: var(--accent-hover);
+}
+
 /* --- Photo Gallery --- */
 .panel-photos {
   display: grid;

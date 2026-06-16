@@ -1,0 +1,195 @@
+/* ============================================
+   Shelter in Motion — Entry Page Styles
+   ============================================ */
+
+.entry-page {
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Navigation Header */
+.entry-nav-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: linear-gradient(to bottom, rgba(13, 11, 9, 0.9) 0%, transparent 100%);
+}
+
+.back-to-map {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.back-to-map:hover {
+  color: var(--text-primary);
+}
+
+/* Hero Section */
+.entry-hero {
+  position: relative;
+  width: 100vw;
+  height: 80vh;
+  margin-bottom: var(--space-xl);
+}
+
+.entry-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.entry-hero-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, var(--bg-deep) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Header Content (Metadata & Title) */
+.entry-header {
+  max-width: 800px;
+  margin: 0 auto var(--space-2xl);
+  padding: 0 var(--space-lg);
+  text-align: center;
+}
+
+.entry-chapter {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-sm);
+  animation: fadeInDown 1s var(--ease-out) forwards;
+}
+
+.entry-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  margin-bottom: var(--space-md);
+}
+
+.entry-meta {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+/* Article Content Layout */
+.entry-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.entry-text {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+}
+
+.entry-text p {
+  margin-bottom: var(--space-md);
+}
+
+.entry-text p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  float: left;
+  line-height: 0.8;
+  padding-right: 0.1em;
+  color: var(--text-primary);
+}
+
+/* Asymmetric Photo Layouts */
+.gallery-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .gallery-row {
+    grid-template-columns: 7fr 5fr;
+  }
+  
+  .gallery-row.reverse {
+    grid-template-columns: 5fr 7fr;
+  }
+}
+
+.gallery-row img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery-caption {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-caption);
+  margin-top: var(--space-sm);
+  text-align: right;
+}
+
+/* Entry Navigation Footer */
+.entry-footer-nav {
+  max-width: 800px;
+  margin: var(--space-2xl) auto;
+  padding: var(--space-lg);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.nav-link:hover {
+  color: var(--accent-hover);
+}
+
+.nav-link.disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

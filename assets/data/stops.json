@@ -23,13 +23,13 @@
       "nationalPark": null, "events": [], "notes": "Friends.", "photos": []
     },
     {
-      "id": "seattle", "title": "Seattle", "chapter": "the-northwest", "tier": "marquee",
+      "id": "seattle", "title": "Seattle", "chapter": "the-northwest", "tier": "marquee", "hasEntry": true,
       "coordinates": [47.6062, -122.3321], "dateStart": "2021-08-15", "dateEnd": "2021-08-21",
       "days": 7, "dayOfTrip": 10, "state": "WA",
       "nationalPark": "Mt Rainier NP", "events": [], "notes": "A week in the city. Mt Rainier. Friends.", "photos": []
     },
     {
-      "id": "port-angeles", "title": "Port Angeles", "chapter": "the-northwest", "tier": "marquee",
+      "id": "port-angeles", "title": "Port Angeles", "chapter": "the-northwest", "tier": "marquee", "hasEntry": true,
       "coordinates": [48.1185, -123.4307], "dateStart": "2021-08-22", "dateEnd": "2021-08-24",
       "days": 3, "dayOfTrip": 17, "state": "WA",
       "nationalPark": "Olympic NP", "events": [], "notes": "Olympic National Park. Rainforests and coastline.", "photos": []
@@ -53,13 +53,13 @@
       "nationalPark": null, "events": [], "notes": "Pre-burn staging.", "photos": []
     },
     {
-      "id": "black-rock", "title": "Black Rock City", "chapter": "the-burn", "tier": "marquee",
+      "id": "black-rock", "title": "Black Rock City", "chapter": "the-burn", "tier": "marquee", "hasEntry": true,
       "coordinates": [40.7864, -119.2065], "dateStart": "2021-09-02", "dateEnd": "2021-09-05",
       "days": 4, "dayOfTrip": 28, "state": "NV",
       "nationalPark": null, "events": ["Burning Man"], "notes": "Burning Man. Its own world.", "photos": []
     },
     {
-      "id": "los-angeles", "title": "Los Angeles", "chapter": "the-la-chapter", "tier": "marquee",
+      "id": "los-angeles", "title": "Los Angeles", "chapter": "the-la-chapter", "tier": "marquee", "hasEntry": true,
       "coordinates": [34.0522, -118.2437], "dateStart": "2021-09-06", "dateEnd": "2021-10-01",
       "days": 26, "dayOfTrip": 32, "state": "CA",
       "nationalPark": null,
@@ -92,7 +92,7 @@
       "nationalPark": "Petrified Forest NP", "events": [], "notes": "Petrified Forest on the drive in.", "photos": []
     },
     {
-      "id": "santa-fe", "title": "Santa Fe", "chapter": "the-southwest", "tier": "marquee",
+      "id": "santa-fe", "title": "Santa Fe", "chapter": "the-southwest", "tier": "marquee", "hasEntry": true,
       "coordinates": [35.6870, -105.9378], "dateStart": "2021-10-06", "dateEnd": "2021-10-08",
       "days": 3, "dayOfTrip": 62, "state": "NM",
       "nationalPark": null, "events": ["Albuquerque Balloon Fiesta"], "notes": "Albuquerque Balloon Fiesta. Hundreds of hot air balloons at dawn.", "photos": []
@@ -104,7 +104,7 @@
       "nationalPark": "Great Sand Dunes NP", "events": [], "notes": "Great Sand Dunes National Park.", "photos": []
     },
     {
-      "id": "denver", "title": "Denver", "chapter": "the-southwest", "tier": "marquee",
+      "id": "denver", "title": "Denver", "chapter": "the-southwest", "tier": "marquee", "hasEntry": true,
       "coordinates": [39.7392, -104.9903], "dateStart": "2021-10-10", "dateEnd": "2021-10-16",
       "days": 7, "dayOfTrip": 66, "state": "CO",
       "nationalPark": "Rocky Mountain NP", "events": [], "notes": "A week in the Mile High City. Rocky Mountain NP.", "photos": []
@@ -140,7 +140,7 @@
       "nationalPark": "Cuyahoga Valley NP", "events": [], "notes": "Cuyahoga Valley National Park.", "photos": []
     },
     {
-      "id": "boston", "title": "Boston", "chapter": "the-northeast", "tier": "marquee",
+      "id": "boston", "title": "Boston", "chapter": "the-northeast", "tier": "marquee", "hasEntry": true,
       "coordinates": [42.3601, -71.0589], "dateStart": "2021-10-31", "dateEnd": "2021-11-09",
       "days": 8, "dayOfTrip": 87, "state": "MA",
       "nationalPark": null, "events": [], "notes": "Base for exploring New England. Halloween arrival.", "photos": []
@@ -176,7 +176,7 @@
       "nationalPark": null, "events": [], "notes": "", "photos": []
     },
     {
-      "id": "washington-dc", "title": "Washington, DC", "chapter": "the-capital-and-south", "tier": "marquee",
+      "id": "washington-dc", "title": "Washington, DC", "chapter": "the-capital-and-south", "tier": "marquee", "hasEntry": true,
       "coordinates": [38.9072, -77.0369], "dateStart": "2021-11-15", "dateEnd": "2021-11-23",
       "days": 9, "dayOfTrip": 102, "state": "DC",
       "nationalPark": "Shenandoah NP", "events": [], "notes": "Nine days in the capital. Shenandoah NP day trip.", "photos": []
@@ -200,7 +200,7 @@
       "nationalPark": "Congaree NP", "events": [], "notes": "Congaree National Park.", "photos": []
     },
     {
-      "id": "charleston", "title": "Charleston", "chapter": "the-capital-and-south", "tier": "marquee",
+      "id": "charleston", "title": "Charleston", "chapter": "the-capital-and-south", "tier": "marquee", "hasEntry": true,
       "coordinates": [32.7765, -79.9311], "dateStart": "2021-11-27", "dateEnd": "2021-12-04",
       "days": 8, "dayOfTrip": 114, "state": "SC",
       "nationalPark": null, "events": [], "notes": "A full week in Charleston.", "photos": []
@@ -212,7 +212,7 @@
       "nationalPark": null, "events": [], "notes": "", "photos": []
     },
     {
-      "id": "asheville", "title": "Asheville", "chapter": "mountain-rest", "tier": "marquee",
+      "id": "asheville", "title": "Asheville", "chapter": "mountain-rest", "tier": "marquee", "hasEntry": true,
       "coordinates": [35.5951, -82.5515], "dateStart": "2021-12-08", "dateEnd": "2021-12-23",
       "days": 16, "dayOfTrip": 125, "state": "NC",
       "nationalPark": null, "events": [], "notes": "The longest stay. Mountains in winter. The trip's deep breath.", "photos": []
@@ -242,7 +242,7 @@
       "nationalPark": "Biscayne NP", "events": [], "notes": "Biscayne National Park. Everglades continued.", "photos": []
     },
     {
-      "id": "key-west", "title": "Key West", "chapter": "christmas-in-florida", "tier": "marquee",
+      "id": "key-west", "title": "Key West", "chapter": "christmas-in-florida", "tier": "marquee", "hasEntry": true,
       "coordinates": [24.5551, -81.7800], "dateStart": "2021-12-30", "dateEnd": "2021-12-30",
       "days": 1, "dayOfTrip": 147, "state": "FL",
       "nationalPark": null, "events": [], "notes": "The southernmost point.", "photos": []
@@ -284,7 +284,7 @@
       "nationalPark": null, "events": [], "notes": "Passing through.", "photos": []
     },
     {
-      "id": "austin", "title": "Austin", "chapter": "the-gulf-and-end", "tier": "marquee",
+      "id": "austin", "title": "Austin", "chapter": "the-gulf-and-end", "tier": "marquee", "hasEntry": true,
       "coordinates": [30.2672, -97.7431], "dateStart": "2022-01-10", "dateEnd": "2022-01-16",
       "days": 7, "dayOfTrip": 158, "state": "TX",
       "nationalPark": null, "events": [], "notes": "A week in Austin.", "photos": []

@@ -107,6 +107,14 @@ function populatePanel(stop) {
   // Notes
   document.getElementById('panel-notes').textContent = stop.notes || '';
 
+  // Entry Link
+  const entryLinkEl = document.getElementById('panel-entry-link');
+  if (stop.hasEntry) {
+    entryLinkEl.innerHTML = `<a href="entries/${stop.id}.html" class="read-more-link">Read the full entry &rarr;</a>`;
+  } else {
+    entryLinkEl.innerHTML = '';
+  }
+
   // Hero image
   const heroImg = document.getElementById('panel-hero-img');
   const heroContainer = document.querySelector('.panel-hero');
