@@ -5,6 +5,10 @@ batch-match.py — Match photos from Google Photos takeout to trip stops.
 Uses EXIF GPS coordinates and timestamps to assign each photo to the
 closest stop (by date range + geographic distance).
 
+Handles Google Photos Takeout's "sidecar JSON" format, where GPS and
+timestamp data are stored in companion .json files rather than embedded
+in the image's EXIF header.
+
 Usage:
     python3 scripts/batch-match.py [takeout_dir] [stops_file]
 
@@ -35,6 +39,47 @@ def parse_gps(gps):
     lat = lat_deg if gps.get(1) == "N" else -lat_deg
     lon = -lon_deg if gps.get(3) == "W" else lon_deg
     return (lat, lon)
+
+
+def read_sidecar_json(filepath):
+    """
+    Attempt to read Google Photos Takeout JSON sidecar for geo and date data.
+    Sidecars are usually named 'filename.jpg.json' or sometimes 'filename.json'.
+    """
+    json_paths = [
+        filepath + ".json",
+        os.path.splitext(filepath)[0] + ".json"
+    ]
+    
+    for jp in json_paths:
+        if os.path.exists(jp):
+            try:
+                with open(jp, 'r') as f:
+                    data = json.load(f)
+                
+                coords = None
+                dt_str = None
+                
+                # Check geoData
+                geo = data.get("geoData", {})
+                lat = geo.get("latitude", 0.0)
+                lon = geo.get("longitude", 0.0)
+                if lat != 0.0 and lon != 0.0:
+                    coords = (lat, lon)
+                
+                # Check timestamp
+                taken = data.get("photoTakenTime", {})
+                ts = taken.get("timestamp")
+                if ts:
+                    # Convert timestamp to EXIF format: YYYY:MM:DD HH:MM:SS
+                    dt_obj = datetime.fromtimestamp(int(ts))
+                    dt_str = dt_obj.strftime("%Y:%m:%d %H:%M:%S")
+                    
+                return coords, dt_str
+            except Exception:
+                continue
+    
+    return None, None
 
 
 def haversine(lat1, lon1, lat2, lon2):
@@ -88,7 +133,7 @@ def match_to_stop(lat, lon, date_str, stops):
             continue
 
         dist = haversine(
-            lat, lon, stop["coordinates"][1], stop["coordinates"][0]
+            lat, lon, stop["coordinates"][0], stop["coordinates"][1]
         )
 
         # If distance to this stop is huge, skip — likely from a different
@@ -158,17 +203,21 @@ def process_photos(photo_files, stops, max_photos=None):
 
         try:
             img = Image.open(filepath)
-            exif = img._getexif()
-            if not exif:
-                no_exif.append(
-                    {
-                        "file": os.path.basename(filepath),
-                        "path": filepath,
-                    }
-                )
-                continue
+            exif = img._getexif() or {}
 
             dt = exif.get(0x0132)  # DateTime tag
+            gps_info = exif.get(0x8825)
+            coords = parse_gps(gps_info) if gps_info else None
+            camera = exif.get(0x0110, "unknown")
+
+            # Fallback to JSON sidecar if EXIF is missing coords or date
+            if not coords or not dt:
+                json_coords, json_dt = read_sidecar_json(filepath)
+                if not coords and json_coords:
+                    coords = json_coords
+                if not dt and json_dt:
+                    dt = json_dt
+
             if not dt:
                 no_exif.append(
                     {
@@ -178,8 +227,6 @@ def process_photos(photo_files, stops, max_photos=None):
                 )
                 continue
 
-            gps_info = exif.get(0x8825)
-            coords = parse_gps(gps_info) if gps_info else None
             if not coords:
                 no_gps.append(
                     {
@@ -202,13 +249,13 @@ def process_photos(photo_files, stops, max_photos=None):
                             haversine(
                                 coords[0],
                                 coords[1],
-                                stop["coordinates"][1],
                                 stop["coordinates"][0],
+                                stop["coordinates"][1],
                             ),
                             1,
                         ),
                         "score": round(score, 1),
-                        "camera": exif.get(0x0110, "unknown"),
+                        "camera": camera,
                     }
                 )
             else:
@@ -218,7 +265,7 @@ def process_photos(photo_files, stops, max_photos=None):
                         "path": filepath,
                         "date": dt,
                         "gps": coords,
-                        "camera": exif.get(0x0110, "unknown"),
+                        "camera": camera,
                     }
                 )
 
