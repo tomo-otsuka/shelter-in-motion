@@ -432,6 +432,7 @@ Everything below is built and functional:
 | Trip data: 10 chapters | `assets/data/chapters.json` | ✅ Done | Titles, date ranges, descriptions |
 | Raw itinerary backup | `assets/data/itinerary-raw.tsv` | ✅ Done | PII scrubbed |
 | Marquee entry page template | `entries/seattle.html`, `css/entry.css` | ✅ Done | Template created; ready to clone for other marquee stops |
+| Remaining marquee entry pages | `entries/*.html` | ✅ Done | Generated 11 entry pages from template |
 | Panel links to entry pages | `js/panel.js`, `stops.json` | ✅ Done | `hasEntry: true` added to marquee stops and link added to panel |
 
 ### ⬜ NOT YET DONE — Backlog
@@ -524,34 +525,7 @@ Replace the coordinates in `route.geojson` with a denser set of waypoints that f
 
 ---
 
-### Task 4: Create Entry Pages for Marquee Stops
-**Priority:** MEDIUM — only needed for the ~12 richest stops.
-**Status:** 🚧 IN PROGRESS — The `seattle.html` template and `entry.css` are built. `stops.json` and `panel.js` are wired up. Remaining work is to clone the template for the other 11 marquee stops.
-**Difficulty:** Medium (HTML + CSS)
 
-#### What to do:
-Create individual HTML pages in the `entries/` directory for marquee stops. These are standalone pages with richer photo layouts and longer writing than the panel allows.
-
-Marquee stops (from `stops.json` where `tier === "marquee"`):
-- `seattle`, `port-angeles`, `black-rock`, `los-angeles`, `santa-fe`, `denver`, `boston`, `washington-dc`, `charleston`, `asheville`, `key-west`, `austin`
-
-#### Template to follow:
-Create `css/entry.css` for entry page styles, then each entry page should:
-1. Link to `../css/main.css` and `../css/entry.css` (use relative paths)
-2. Include the grain + vignette overlays
-3. Have a full-bleed hero image at the top
-4. Show chapter, title, date, location metadata
-5. Mix photos and text in an asymmetric layout (not a uniform grid)
-6. Include a "Back to map" link that returns to `../index.html`
-7. Include prev/next links to adjacent entry pages
-
-#### File naming convention:
-`entries/{stop-id}.html` — e.g., `entries/black-rock.html`, `entries/asheville.html`
-
-#### How to link from the panel:
-After creating entry pages, add a `"hasEntry": true` field to the stop in `stops.json`. Then update `js/panel.js` to show a "Read more →" link in the panel body that navigates to `entries/${stop.id}.html`. Currently `hasEntry` is not in the data schema — it needs to be added.
-
----
 
 ### Task 5: Add a "National Parks" Filter Toggle
 **Priority:** LOW — nice to have.
