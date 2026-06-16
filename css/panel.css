@@ -1,0 +1,313 @@
+/* ============================================
+   Stop Detail Panel
+   ============================================ */
+
+.stop-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 420px;
+  max-width: 90vw;
+  height: 100vh;
+  z-index: 600;
+  background: var(--bg-surface);
+  border-left: 1px solid var(--border);
+  transform: translateX(100%);
+  transition: transform var(--duration-normal) var(--ease-out);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.stop-panel.open {
+  transform: translateX(0);
+}
+
+/* --- Close Button --- */
+.panel-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  z-index: 10;
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border: none;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  transition: color var(--duration-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-close:hover {
+  color: var(--text-primary);
+}
+
+/* --- Hero Image --- */
+.panel-hero {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg-elevated);
+  position: relative;
+}
+
+.panel-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to top, var(--bg-surface), transparent);
+  pointer-events: none;
+}
+
+.panel-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.panel-hero-img.loaded {
+  opacity: 1;
+}
+
+/* Empty state when no photo */
+.panel-hero.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-hero.empty::before {
+  content: attr(data-empty);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--text-caption);
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+/* --- Panel Body --- */
+.panel-body {
+  padding: 0 var(--space-lg) var(--space-lg);
+}
+
+/* --- Metadata --- */
+.panel-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.panel-chapter {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.panel-dates {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 300;
+  color: var(--text-caption);
+}
+
+/* --- Title --- */
+.panel-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+  line-height: 1.15;
+}
+
+/* --- Location --- */
+.panel-location {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-caption);
+  letter-spacing: 0.03em;
+  margin-bottom: var(--space-lg);
+}
+
+/* --- Highlights (NP, events) --- */
+.panel-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+.panel-highlights:empty {
+  display: none;
+}
+
+.highlight-tag {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  border: 1px solid;
+}
+
+.highlight-tag.park {
+  color: var(--park-green);
+  border-color: rgba(122, 154, 107, 0.4);
+}
+
+.highlight-tag.event {
+  color: var(--accent);
+  border-color: rgba(212, 165, 116, 0.3);
+}
+
+/* --- Notes / Description --- */
+.panel-notes {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+  font-style: italic;
+}
+
+.panel-notes:empty {
+  display: none;
+}
+
+/* --- Photo Gallery --- */
+.panel-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.panel-photos:empty {
+  display: none;
+}
+
+.panel-photos img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-out);
+  opacity: 0;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.panel-photos img:hover {
+  transform: scale(1.03);
+}
+
+/* First photo spans full width */
+.panel-photos img:first-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+/* --- Navigation --- */
+.panel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border);
+}
+
+.panel-nav-btn {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-sm) 0;
+  transition: color var(--duration-fast);
+}
+
+.panel-nav-btn:hover:not(:disabled) {
+  color: var(--accent);
+}
+
+.panel-nav-btn:disabled {
+  color: var(--text-caption);
+  cursor: default;
+  opacity: 0.3;
+}
+
+.panel-counter {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--text-caption);
+  letter-spacing: 0.05em;
+}
+
+/* --- Mobile: Bottom Sheet --- */
+@media (max-width: 768px) {
+  .stop-panel {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 75vh;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    border-radius: 12px 12px 0 0;
+    transform: translateY(100%);
+  }
+
+  .stop-panel.open {
+    transform: translateY(0);
+  }
+
+  .stop-panel::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin: 10px auto;
+  }
+
+  .panel-body {
+    padding: 0 var(--space-md) var(--space-md);
+  }
+
+  .panel-close {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    background: rgba(26, 23, 20, 0.85);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.25rem;
+  }
+
+  .panel-title {
+    font-size: 1.5rem;
+  }
+}

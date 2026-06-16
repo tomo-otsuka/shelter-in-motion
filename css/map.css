@@ -1,0 +1,269 @@
+/* ============================================
+   Map Styles
+   ============================================ */
+
+/* --- Map Container --- */
+#map {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: var(--bg-deep);
+  transition: filter var(--duration-normal) var(--ease-out);
+}
+
+/* Vintage map filter — inverts + warms the light CartoDB Positron tiles */
+.leaflet-tile-pane {
+  filter: invert(1) sepia(0.25) saturate(0.4) brightness(0.45) contrast(1.1);
+  transition: filter var(--duration-normal) var(--ease-out);
+}
+
+/* Dim the map when panel is open */
+#map.dimmed .leaflet-tile-pane {
+  filter: invert(1) sepia(0.25) saturate(0.3) brightness(0.3) contrast(1.1);
+}
+
+/* --- Landing Overlay --- */
+.landing-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 11, 9, 0.55);
+  backdrop-filter: blur(1px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              visibility var(--duration-slow);
+}
+
+.landing-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.landing-content {
+  text-align: center;
+  max-width: 600px;
+  padding: var(--space-lg);
+}
+
+.landing-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-lg);
+  opacity: 0;
+  animation: fadeInUp 1.2s var(--ease-out) 0.3s forwards;
+}
+
+.landing-stats {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-md);
+  opacity: 0;
+  animation: fadeIn 1s var(--ease-out) 0.9s forwards;
+}
+
+.stat-divider {
+  margin: 0 0.75rem;
+  color: var(--text-caption);
+}
+
+.landing-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-caption);
+  margin-bottom: var(--space-xl);
+  opacity: 0;
+  animation: fadeIn 1s var(--ease-out) 1.3s forwards;
+}
+
+.explore-btn {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid rgba(212, 165, 116, 0.4);
+  padding: 0.875rem 2.5rem;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+  opacity: 0;
+  animation: fadeIn 1s var(--ease-out) 1.7s forwards;
+}
+
+.explore-btn:hover {
+  background: var(--accent);
+  color: var(--bg-deep);
+  border-color: var(--accent);
+}
+
+/* --- Custom Markers --- */
+.stop-marker {
+  border-radius: 50%;
+  background: var(--route-line);
+  border: 2px solid var(--bg-deep);
+  box-shadow: 0 0 0 1px rgba(196, 149, 106, 0.5),
+              0 0 8px var(--route-glow);
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
+  opacity: 0;
+}
+
+.stop-marker:hover {
+  transform: scale(1.6);
+  box-shadow: 0 0 0 2px var(--accent),
+              0 0 16px var(--route-glow);
+}
+
+.stop-marker.visible {
+  opacity: 1;
+  animation: markerBloom 0.5s var(--ease-out) forwards;
+}
+
+.stop-marker.active {
+  background: var(--accent-hover);
+  transform: scale(2);
+  box-shadow: 0 0 0 2px var(--accent-hover),
+              0 0 24px var(--route-glow);
+}
+
+/* Origin marker (SF) */
+.origin-marker {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50%;
+  background: var(--text-primary);
+  border: 2px solid var(--bg-deep);
+  box-shadow: 0 0 0 1px var(--text-secondary);
+  opacity: 0;
+}
+
+.origin-marker.visible {
+  opacity: 1;
+  animation: originPulse 2.5s ease-in-out infinite;
+}
+
+/* --- Route Line --- */
+.route-line {
+  stroke: var(--route-line);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  stroke-dasharray: 6 4;
+}
+
+.route-glow {
+  stroke: var(--route-line);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  opacity: 0.12;
+}
+
+/* --- Hide Default Leaflet UI --- */
+.leaflet-control-zoom {
+  display: none !important;
+}
+
+.leaflet-control-attribution {
+  font-family: var(--font-mono) !important;
+  font-size: 0.55rem !important;
+  background: rgba(13, 11, 9, 0.7) !important;
+  color: var(--text-caption) !important;
+  padding: 2px 8px !important;
+  border: none !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--text-secondary) !important;
+}
+
+/* --- Leaflet popup overrides --- */
+.leaflet-popup-content-wrapper {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.leaflet-popup-tip {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes originPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 1px var(--text-secondary),
+                0 0 0 0 rgba(232, 223, 211, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 1px var(--text-secondary),
+                0 0 0 10px rgba(232, 223, 211, 0);
+  }
+}
+
+@keyframes markerBloom {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  60% {
+    transform: scale(1.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .landing-stats {
+    font-size: 0.65rem;
+  }
+
+  .stat-divider {
+    margin: 0 0.4rem;
+  }
+
+  .landing-subtitle {
+    font-size: 0.9rem;
+    padding: 0 var(--space-md);
+  }
+}

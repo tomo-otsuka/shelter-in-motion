@@ -363,82 +363,331 @@ Or nothing at all. Just the map, with the line ending mid-desert. The user decid
 
 ```
 shelter-in-motion/
-├── index.html              # Landing — map + hero
+├── index.html                 # [DONE] Landing page — full-viewport map + overlay + panel
 ├── css/
-│   ├── main.css            # Design tokens, base styles
-│   ├── map.css             # Map-specific styles
-│   ├── panel.css           # Stop detail panel
-│   └── entry.css           # Full entry pages
+│   ├── main.css               # [DONE] Design tokens, reset, typography, grain, vignette
+│   ├── map.css                # [DONE] Map tiles (vintage filter), landing overlay, markers, route
+│   ├── panel.css              # [DONE] Slide-in panel (desktop) / bottom sheet (mobile)
+│   └── entry.css              # [TODO] Full entry page styles for marquee stops
 ├── js/
-│   ├── main.js             # App initialization
-│   ├── map.js              # Leaflet setup, route drawing, markers
-│   ├── panel.js            # Panel open/close, content loading
-│   ├── animation.js        # Route draw animation, transitions
-│   └── data.js             # Data loading and management
+│   ├── main.js                # [DONE] App entry — orchestrates init, wires explore button
+│   ├── data.js                # [DONE] Loads stops.json, route.geojson, chapters.json
+│   ├── map.js                 # [DONE] Leaflet init, route polyline, markers, fly-to, dimming
+│   ├── panel.js               # [DONE] Panel open/close, content population, prev/next nav
+│   └── animation.js           # [DONE] Route draw-in animation with synced marker reveals
 ├── assets/
-│   ├── images/             # Photos organized by stop
-│   │   ├── lake-tahoe/
-│   │   ├── bend/
-│   │   ├── seattle/
-│   │   └── ...
+│   ├── images/                # [TODO] Photos organized by stop ID (see "How to Add Photos")
 │   └── data/
-│       ├── stops.json      # Stop manifest (coords, metadata, photos)
-│       ├── route.geojson    # Full route path
-│       └── chapters.json   # Chapter groupings
-├── entries/                # Full entry pages for marquee stops
-│   ├── burning-man.html
-│   ├── olympic-np.html
-│   └── ...
-├── PLAN.md
-├── README.md
-└── AGENTS.md
+│       ├── stops.json         # [DONE] 50 stops with coords, dates, tiers, chapters. Photos empty.
+│       ├── route.geojson      # [DONE] Simplified straight-line route. Needs road-following upgrade.
+│       ├── chapters.json      # [DONE] 10 chapters with titles and descriptions.
+│       └── itinerary-raw.tsv  # [DONE] Original spreadsheet data (PII scrubbed).
+├── entries/                   # [TODO] Full HTML pages for marquee stops
+├── PLAN.md                    # This file.
+├── README.md                  # [DONE] Project overview.
+└── AGENTS.md                  # [DONE] AI agent guidance.
 ```
 
-### Data: `stops.json` (shape)
+### Dependencies (CDN only, no install needed)
+- **Leaflet.js 1.9.4** — map rendering (loaded from unpkg with SRI hashes)
+- **Google Fonts** — Instrument Serif, Spectral, JetBrains Mono
+- Nothing else. No build step. No framework. No npm.
+
+### Local Development
+Requires a local HTTP server (ES modules and `fetch` need it). Run one of:
+```bash
+npx serve .              # Node (auto-picks port)
+python3 -m http.server   # Python (port 8000)
+```
+Then open the URL it prints (e.g., `http://localhost:3000`).
+
+---
+
+## Implementation Status
+
+### ✅ DONE — Foundation (v0.1 skeleton)
+
+Everything below is built and functional:
+
+| What | File(s) | Status | Notes |
+|---|---|---|---|
+| Landing page with title, stats, explore button | `index.html`, `css/map.css` | ✅ Done | Staggered fade-in animations on load |
+| Full-viewport Leaflet map | `js/map.js`, `css/map.css` | ✅ Done | CartoDB Positron tiles with CSS `invert+sepia+saturate` filter for vintage look |
+| Film grain overlay | `css/main.css` | ✅ Done | SVG noise texture at 3.5% opacity, covers entire viewport |
+| Viewport vignette | `css/main.css` | ✅ Done | Radial gradient darkening edges |
+| Route polyline with glow | `js/map.js`, `css/map.css` | ✅ Done | Dashed line + wider glow layer behind it |
+| Route draw-in animation | `js/animation.js` | ✅ Done | SVG dashoffset animation, 6s duration, 800ms initial delay |
+| Synced marker reveals | `js/animation.js` | ✅ Done | Each marker blooms as the route line reaches it (sampled at 300 points) |
+| Custom markers (3 sizes) | `js/map.js`, `css/map.css` | ✅ Done | Marquee=14px, Standard=11px, Postcard=8px. Bloom animation on reveal. |
+| Origin marker (SF) | `js/map.js`, `css/map.css` | ✅ Done | Pulsing ring animation |
+| Stop detail panel | `js/panel.js`, `css/panel.css` | ✅ Done | Slide-in from right (desktop), bottom sheet (mobile) |
+| Panel content population | `js/panel.js` | ✅ Done | Title, chapter, dates, location line, highlights, notes, photos |
+| Panel navigation | `js/panel.js` | ✅ Done | Prev/Next buttons + arrow keys + Escape to close |
+| Map dimming when panel open | `js/map.js`, `css/map.css` | ✅ Done | Reduces tile brightness via CSS filter change |
+| Photo treatment CSS | `css/main.css` | ✅ Done | `.photo` class: desaturate + sepia, lifts on hover |
+| Design token system | `css/main.css` | ✅ Done | All colors, fonts, spacing, transitions as CSS custom properties |
+| Responsive mobile layout | `css/panel.css` | ✅ Done | Panel becomes bottom sheet at 768px breakpoint |
+| Trip data: 50 stops | `assets/data/stops.json` | ✅ Done | All stops with real coords, dates, chapters, tiers. Photos arrays empty. |
+| Trip data: route path | `assets/data/route.geojson` | ✅ Done | 56 waypoints, straight-line connections (simplified) |
+| Trip data: 10 chapters | `assets/data/chapters.json` | ✅ Done | Titles, date ranges, descriptions |
+| Raw itinerary backup | `assets/data/itinerary-raw.tsv` | ✅ Done | PII scrubbed |
+
+### ⬜ NOT YET DONE — Backlog
+
+Ordered by priority. Each task is independent and can be done in isolation.
+
+---
+
+## Backlog: Detailed Task Descriptions
+
+### Task 1: Add Photos to Stops
+**Priority:** HIGH — this is what makes the site real.
+**Difficulty:** Low (mostly file management + JSON edits)
+
+#### What to do:
+1. For each stop, create a folder at `assets/images/{stop-id}/`. The stop ID must match the `id` field in `stops.json`. Example: `assets/images/seattle/`, `assets/images/black-rock/`, `assets/images/asheville/`.
+2. Place photo files in the folder. Use WebP format if possible (< 500KB per image). Filenames should be descriptive: `mt-rainier-sunrise.webp`, `pike-place-market.webp`.
+3. Update `assets/data/stops.json` — find the stop by `id` and add filenames to the `photos` array. **The first photo in the array becomes the hero image in the panel.**
+
+#### Example:
 ```json
 {
-  "stops": [
-    {
-      "id": "lake-tahoe",
-      "title": "Lake Tahoe",
-      "chapter": "the-northwest",
-      "tier": "standard",
-      "coordinates": [39.0968, -120.0324],
-      "dateStart": "2021-08-06",
-      "dateEnd": "2021-08-07",
-      "days": 2,
-      "dayOfTrip": 1,
-      "state": "CA/NV",
-      "notes": "Vince's birthday. The trip begins.",
-      "photos": ["tahoe-01.webp", "tahoe-02.webp"],
-      "nationalPark": null,
-      "hasEntry": false
-    }
-  ]
+  "id": "seattle",
+  "photos": ["mt-rainier-from-highway.webp", "pike-place.webp", "space-needle-dusk.webp"]
 }
 ```
 
-### Dependencies (CDN only)
-- **Leaflet.js** — map rendering
-- **Google Fonts** — typography (Inter or similar)
-- Nothing else. No build step. No framework.
+This will result in:
+- `assets/images/seattle/mt-rainier-from-highway.webp` → panel hero image
+- `assets/images/seattle/pike-place.webp` → photo gallery
+- `assets/images/seattle/space-needle-dusk.webp` → photo gallery
+
+#### How the code uses it:
+- Hero: `panel.js` line ~98 sets `src` to `assets/images/${stop.id}/${stop.photos[0]}`
+- Gallery: `panel.js` line ~108 loops `stop.photos.slice(1)` and creates `<img>` elements
+- All photos get the `.photo` CSS class (film treatment filter)
+
+**No code changes needed.** Just add files and update the JSON.
 
 ---
 
-## What's Needed to Start Building
+### Task 2: Write Stop Notes/Descriptions
+**Priority:** HIGH — gives the site voice.
+**Difficulty:** Low (JSON text edits only)
 
-1. ✅ Spreadsheet data (received — will convert to `stops.json`)
-2. ⬜ Photos — rough folders by location
-3. ⬜ Pick 3–5 marquee stops to design first
-4. ⬜ Confirm chapter names (or provide your own)
-5. ⬜ Approximate mileage (or we estimate from driving times)
+#### What to do:
+Edit `assets/data/stops.json` and update the `notes` field for each stop. This text appears in the panel as an italic paragraph below the title.
+
+- **Marquee stops:** 2-4 sentences. Reflective, personal.
+- **Standard stops:** 1-2 sentences. Brief impression.
+- **Postcard stops:** One line. A caption.
+
+Some stops already have placeholder notes. Many are empty strings `""`.
+
+#### Example:
+```json
+{
+  "id": "asheville",
+  "notes": "Sixteen nights in the mountains. The longest stay of the trip. I'd been moving for four months straight and the Appalachians made me stop. The Blue Ridge Parkway in December, empty and fog-wrapped. I didn't want to leave."
+}
+```
+
+**No code changes needed.** Just edit the JSON.
 
 ---
 
-## Open Questions
+### Task 3: Upgrade Route to Road-Following Path
+**Priority:** MEDIUM — the current straight-line route looks unnatural when zoomed in.
+**Difficulty:** Medium
 
-- **Carlsbad** — was this Carlsbad Caverns NP? (would make 14 parks)
-- **Ending** — how to handle the final frame after Phoenix. Options range from nothing (trip just ends) to a brief, quiet text-only coda. Decide later.
-- **Chapter names** — current proposals are working titles. Your own names welcome.
-- **People** — include friend names in entries, or keep it vague ("a friend in Portland")?
-- **Driving stats** — do you know total mileage? Or should we estimate from the drive times in the spreadsheet?
+#### Current state:
+`assets/data/route.geojson` has 56 waypoints connected by straight lines. At zoom level 5 (full US view) it looks fine. At zoom 7+ the straight lines cut across mountains and lakes.
+
+#### What to do:
+Replace the coordinates in `route.geojson` with a denser set of waypoints that follow actual roads. Options:
+
+**Option A — Manual:** Use a tool like [geojson.io](https://geojson.io) to trace the route on a map. Export as GeoJSON. Replace the `coordinates` array in `route.geojson`. The format must stay `[longitude, latitude]` (GeoJSON standard, NOT Leaflet order).
+
+**Option B — API:** Use a routing API (Google Directions, OSRM, or Mapbox) to generate turn-by-turn coordinates between each pair of consecutive stops. Concatenate the results into one LineString. This gives the most accurate path but requires an API key.
+
+**Option C — Simplified:** Add 3-5 intermediate waypoints between each pair of stops to approximate road curves. Less accurate than Option B but much better than straight lines. No API needed.
+
+#### Important:
+- The file must remain valid GeoJSON with a single `LineString` feature.
+- Coordinates must be `[longitude, latitude]` (NOT `[lat, lng]`).
+- The route must pass through or very near each stop's coordinates (the marker reveal animation calculates timing by finding the closest point on the route to each stop).
+- Keep the overall waypoint order: SF → Tahoe → Bend → Portland → Seattle → ... → Phoenix.
+
+**No JS/CSS changes needed.** The route rendering code reads whatever coordinates are in the file.
+
+---
+
+### Task 4: Create Entry Pages for Marquee Stops
+**Priority:** MEDIUM — only needed for the ~12 richest stops.
+**Difficulty:** Medium (HTML + CSS)
+
+#### What to do:
+Create individual HTML pages in the `entries/` directory for marquee stops. These are standalone pages with richer photo layouts and longer writing than the panel allows.
+
+Marquee stops (from `stops.json` where `tier === "marquee"`):
+- `seattle`, `port-angeles`, `black-rock`, `los-angeles`, `santa-fe`, `denver`, `boston`, `washington-dc`, `charleston`, `asheville`, `key-west`, `austin`
+
+#### Template to follow:
+Create `css/entry.css` for entry page styles, then each entry page should:
+1. Link to `../css/main.css` and `../css/entry.css` (use relative paths)
+2. Include the grain + vignette overlays
+3. Have a full-bleed hero image at the top
+4. Show chapter, title, date, location metadata
+5. Mix photos and text in an asymmetric layout (not a uniform grid)
+6. Include a "Back to map" link that returns to `../index.html`
+7. Include prev/next links to adjacent entry pages
+
+#### File naming convention:
+`entries/{stop-id}.html` — e.g., `entries/black-rock.html`, `entries/asheville.html`
+
+#### How to link from the panel:
+After creating entry pages, add a `"hasEntry": true` field to the stop in `stops.json`. Then update `js/panel.js` to show a "Read more →" link in the panel body that navigates to `entries/${stop.id}.html`. Currently `hasEntry` is not in the data schema — it needs to be added.
+
+---
+
+### Task 5: Add a "National Parks" Filter Toggle
+**Priority:** LOW — nice to have.
+**Difficulty:** Low-Medium
+
+#### What to do:
+Add a small toggle button on the map (e.g., bottom-left corner) that filters the map to show only stops with a `nationalPark` value.
+
+1. Add a button to `index.html` (inside or near the `#map` div):
+   ```html
+   <button id="parks-filter" class="map-filter-btn">National Parks</button>
+   ```
+2. Style it in `css/map.css` — small, monospace text, semi-transparent background.
+3. In `js/main.js` or a new `js/filters.js`, on click:
+   - Toggle a CSS class on non-park markers to hide them (e.g., `opacity: 0; pointer-events: none`)
+   - Toggle a class on the button to show active state
+4. Use `data.js`'s `getStops({ nationalPark: true })` to identify which markers to keep visible.
+
+---
+
+### Task 6: Stats Counter Animation
+**Priority:** LOW — polish.
+**Difficulty:** Low
+
+#### What to do:
+When the user clicks "Explore the journey", animate the stats in the landing overlay counting up before the overlay fades. E.g., "0 days" → "168 days" over 2 seconds.
+
+The stats are currently static text in `index.html`:
+```html
+<span class="stat">168 days</span>
+```
+
+To animate: parse the number, replace the text content in a `requestAnimationFrame` loop from 0 to target over ~2s, then let the overlay fade as normal.
+
+---
+
+### Task 7: Chapter Labels on Map
+**Priority:** LOW — nice to have.
+**Difficulty:** Medium
+
+#### What to do:
+At certain zoom levels (e.g., zoom 5-6), display chapter names as text labels on the map near the geographic center of each chapter's stops. Use Leaflet's `L.divIcon` with a custom CSS class for styling.
+
+Calculate each chapter's center by averaging the coordinates of its stops (using `data.js`'s `getStops({ chapter: 'chapter-id' })`).
+
+Show labels at zoom 5-6, hide at zoom 7+ (use `map.on('zoomend', ...)` to toggle visibility).
+
+---
+
+### Task 8: The Ending
+**Priority:** LOW — decide later.
+**Difficulty:** Low
+
+#### What to do:
+After the last stop (Phoenix), optionally add a quiet ending. Options:
+- **Option A:** The route line past Phoenix fades to a dotted trail heading south, then stops. No marker. No explanation.
+- **Option B:** After the route animation completes, a final text card fades in centered on the map: *"The motion stopped. Something else began."* in Instrument Serif.
+- **Option C:** Nothing. The trip ends at Phoenix and the site doesn't comment on it.
+
+Implementation: add a step after the route animation completes in `js/main.js` or `js/animation.js`.
+
+---
+
+### Task 9: Image Optimization Pipeline
+**Priority:** LOW (do when adding photos).
+**Difficulty:** Low
+
+#### What to do:
+Before adding photos to `assets/images/`, optimize them:
+1. Convert to WebP format: `cwebp -q 80 input.jpg -o output.webp`
+2. Resize to max 1600px on longest edge (for hero images) or 800px (for gallery thumbnails)
+3. Keep file sizes under 500KB per image
+4. **CRITICAL:** Strip EXIF data for privacy: `exiftool -all= *.webp`
+
+> [!CAUTION]
+> **Privacy Requirement:** This was a personal roadtrip. All photos MUST have EXIF data (especially GPS coordinates) completely stripped before they are committed to the repository to protect privacy.
+
+A helper script could automate this. Place it in a `scripts/` directory (don't deploy it — add to `.gitignore` if needed).
+
+---
+
+## Open Questions (Still Unresolved)
+
+- **Carlsbad** — was this Carlsbad Caverns NP? If yes, update `stops.json` to add `"nationalPark": "Carlsbad Caverns NP"` on the `carlsbad` stop. That makes 14 national parks total; also update `index.html` stats and the PLAN.md counts.
+- **Chapter names** — current names are working titles. Owner may want custom names.
+- **People** — friend names are scrubbed from data for the public repo. If entries mention friends, use first names or vague references ("a friend in Portland").
+- **Driving stats** — total mileage unknown. Can estimate ~15,000 miles from drive times in the spreadsheet (rough: sum of drive hours × 60 mph average).
+- **Ending** — see Task 8 above. No rush.
+
+---
+
+## Data Schema Reference
+
+### stops.json — Stop Object
+```json
+{
+  "id": "string — URL-safe identifier, matches image folder name",
+  "title": "string — display name of the stop",
+  "chapter": "string — must match an id in chapters.json",
+  "tier": "string — 'marquee' | 'standard' | 'postcard'",
+  "coordinates": "[latitude, longitude] — NOTE: Leaflet order, NOT GeoJSON order",
+  "dateStart": "string — ISO date 'YYYY-MM-DD'",
+  "dateEnd": "string — ISO date 'YYYY-MM-DD'",
+  "days": "number — nights spent at this stop",
+  "dayOfTrip": "number — which day of the 168-day trip this stop starts on",
+  "state": "string — state abbreviation(s)",
+  "nationalPark": "string|null — name of the national park visited, or null",
+  "events": "string[] — names of festivals, concerts, or notable events",
+  "notes": "string — descriptive text shown in the panel",
+  "photos": "string[] — filenames relative to assets/images/{id}/. First photo = hero."
+}
+```
+
+### route.geojson — GeoJSON LineString
+```json
+{
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "geometry": {
+      "type": "LineString",
+      "coordinates": [
+        [longitude, latitude],
+        ...
+      ]
+    }
+  }]
+}
+```
+**IMPORTANT:** GeoJSON uses `[longitude, latitude]` — this is the OPPOSITE of `stops.json` which uses `[latitude, longitude]` (Leaflet convention). The code in `map.js` flips the coordinates when reading the GeoJSON.
+
+### chapters.json — Chapter Object
+```json
+{
+  "id": "string — URL-safe identifier, referenced by stops",
+  "title": "string — display name",
+  "number": "number — chapter order (1-10)",
+  "dateRange": "string — human-readable date range",
+  "description": "string — one-line summary of this chapter"
+}
+```
+

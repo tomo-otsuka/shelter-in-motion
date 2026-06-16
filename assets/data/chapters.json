@@ -1,0 +1,74 @@
+{
+  "chapters": [
+    {
+      "id": "the-northwest",
+      "title": "The Northwest",
+      "number": 1,
+      "dateRange": "Aug 6 – Aug 28, 2021",
+      "description": "Tahoe to the Olympic Peninsula. Forests, coastline, friends."
+    },
+    {
+      "id": "the-burn",
+      "title": "The Burn",
+      "number": 2,
+      "dateRange": "Aug 29 – Sep 5, 2021",
+      "description": "Reno staging and Black Rock City. A world apart."
+    },
+    {
+      "id": "the-la-chapter",
+      "title": "The LA Chapter",
+      "number": 3,
+      "dateRange": "Sep 6 – Oct 1, 2021",
+      "description": "$75/night base camp. Side trips to San Diego and Las Vegas. Festivals."
+    },
+    {
+      "id": "the-southwest",
+      "title": "The Southwest",
+      "number": 4,
+      "dateRange": "Oct 2 – Oct 16, 2021",
+      "description": "Flagstaff to Denver. Balloon Fiesta, sand dunes, Rocky Mountains."
+    },
+    {
+      "id": "the-middle",
+      "title": "The Middle",
+      "number": 5,
+      "dateRange": "Oct 17 – Oct 30, 2021",
+      "description": "Kansas City to Cleveland. The heartland, one cave at a time."
+    },
+    {
+      "id": "the-northeast",
+      "title": "The Northeast",
+      "number": 6,
+      "dateRange": "Oct 31 – Nov 14, 2021",
+      "description": "Boston, Maine, Niagara, Toronto. Leaves changing, winter coming."
+    },
+    {
+      "id": "the-capital-and-south",
+      "title": "The Capital & the South",
+      "number": 7,
+      "dateRange": "Nov 15 – Dec 7, 2021",
+      "description": "DC to Charleston. Thanksgiving on the road. Heading south."
+    },
+    {
+      "id": "mountain-rest",
+      "title": "Mountain Rest",
+      "number": 8,
+      "dateRange": "Dec 8 – Dec 23, 2021",
+      "description": "Sixteen nights in Asheville. The trip's deep breath."
+    },
+    {
+      "id": "christmas-in-florida",
+      "title": "Christmas in Florida",
+      "number": 9,
+      "dateRange": "Dec 24, 2021 – Jan 1, 2022",
+      "description": "Savannah to Key West. Christmas Day driving. NYE in Miami."
+    },
+    {
+      "id": "the-gulf-and-end",
+      "title": "The Gulf & The End",
+      "number": 10,
+      "dateRange": "Jan 2 – Jan 20, 2022",
+      "description": "Gulf Coast to Austin to Arizona. The motion stops."
+    }
+  ]
+}

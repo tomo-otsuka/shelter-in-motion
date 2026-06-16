@@ -68,4 +68,5 @@ Guidance for AI agents working on this repository.
 - Do **not** add server-side code or APIs.
 - Do **not** introduce heavy dependencies — keep the CDN footprint minimal (Leaflet + fonts).
 - Do **not** commit very large image files without optimizing them first (aim for < 500KB per photo; use WebP where possible).
+- **CRITICAL:** You MUST strip all EXIF data (especially GPS coordinates) from images before committing them to protect privacy.
 - Do **not** hardcode absolute URLs — use relative paths so the site works both locally and on GitHub Pages.
