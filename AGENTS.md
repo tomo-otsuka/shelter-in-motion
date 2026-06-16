@@ -64,9 +64,10 @@ When an agent is tasked with sorting through a bulk folder of uncurated, user-pr
    - **Aesthetic:** Does it fit the warm, dark, cinematic, reflective tone?
    - **Subject:** Does it capture the vibe of the specific location (e.g. empty highways, neon signs, nature)?
    - **Quality:** Is the subject clear and the composition engaging?
-3. **Selection & Role Assignment:** For each stop in the itinerary:
-   - Select **1 Hero Image:** A strong establishing wide-shot that represents the mood of the stop.
-   - Select **2-5 Gallery Images:** Supporting shots that provide detail or texture (close-ups, interesting landmarks, candid moments).
+3. **Selection & Role Assignment:** For each stop in the itinerary, select photos based on the stop's tier (defined in `stops.json`):
+   - **For all stops:** Select **1 Hero Image** (a strong establishing wide-shot that represents the mood).
+   - **For "Marquee" stops (e.g., Burning Man, LA, National Parks):** Select **10-20 Gallery Images** to populate a rich, full-page entry.
+   - **For "Standard" & "Postcard" stops:** Select **2-5 Gallery Images** to support the slide-in panel.
    - *Discard the rest.*
 4. **Processing & Pipeline Setup:** For the selected photos, prepare them for the repository:
    - Rename the files to descriptive, URL-safe names (e.g., `bend-oregon-highway.webp`).
