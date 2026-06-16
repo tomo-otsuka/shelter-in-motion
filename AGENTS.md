@@ -64,6 +64,7 @@ When an agent is tasked with sorting through a bulk folder of uncurated, user-pr
    - **Aesthetic:** Does it fit the warm, dark, cinematic, reflective tone?
    - **Subject:** Does it capture the vibe of the specific location (e.g. empty highways, neon signs, nature)?
    - **Quality:** Is the subject clear and the composition engaging?
+   - **De-duplication:** For bursts or sequential shots of the same subject, pick only the single strongest frame and aggressively discard the near-duplicates to avoid repetition.
 3. **Selection & Role Assignment:** For each stop in the itinerary, select photos based on the stop's tier (defined in `stops.json`):
    - **For all stops:** Select **1 Hero Image** (a strong establishing wide-shot that represents the mood).
    - **For "Marquee" stops (e.g., Burning Man, LA, National Parks):** Select **10-20 Gallery Images** to populate a rich, full-page entry.
