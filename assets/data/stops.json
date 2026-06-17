@@ -48,7 +48,13 @@
       "nationalPark": null,
       "events": [],
       "notes": "Friends. High desert and craft beer town.",
-      "photos": []
+      "photos": [
+        "bend-hero-road.webp",
+        "bend-craft-beer.webp",
+        "bend-flower-house.webp",
+        "bend-dogs-selfie.webp",
+        "bend-pizza-beer.webp"
+      ]
     },
     {
       "id": "portland-or",
@@ -67,7 +73,13 @@
       "nationalPark": null,
       "events": [],
       "notes": "Friends.",
-      "photos": []
+      "photos": [
+        "portland-hero.webp",
+        "portland-gallery-1.webp",
+        "portland-gallery-2.webp",
+        "portland-gallery-3.webp",
+        "portland-gallery-4.webp"
+      ]
     },
     {
       "id": "seattle",
@@ -87,7 +99,22 @@
       "nationalPark": "Mt Rainier NP",
       "events": [],
       "notes": "A week in the city. Mt Rainier. Friends.",
-      "photos": []
+      "photos": [
+        "seattle-hero.webp",
+        "seattle-gallery-1.webp",
+        "seattle-gallery-2.webp",
+        "seattle-gallery-3.webp",
+        "seattle-gallery-4.webp",
+        "seattle-gallery-5.webp",
+        "seattle-gallery-6.webp",
+        "seattle-gallery-7.webp",
+        "seattle-gallery-8.webp",
+        "seattle-gallery-9.webp",
+        "seattle-pike-place.webp",
+        "seattle-mt-rainier.webp",
+        "seattle-hike.webp",
+        "seattle-sunset.webp"
+      ]
     },
     {
       "id": "port-angeles",
