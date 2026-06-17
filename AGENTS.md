@@ -74,7 +74,7 @@ When an agent is tasked with sorting through a bulk folder of uncurated, user-pr
    - Rename the files to descriptive, URL-safe names (e.g., `bend-oregon-highway.webp`).
    - Run the mandatory optimization and **CRITICAL EXIF stripping** step. You can use the provided `scripts/process-image.py` script (e.g., `python scripts/process-image.py --input <src> --output <dest.webp> --size 1600`) which uses Python's `Pillow` (PIL) library to safely convert to WebP, scale down (aim for < 500KB), and automatically strip EXIF. This is highly recommended as native OS tools like macOS `sips` may fail to write WebP formats.
    - Verify that all EXIF data (especially GPS coordinates) has been stripped by using a tool like `exiftool assets/images/<stop-id>/*.webp`.
-   - Move the final optimized files into the appropriate `assets/images/<stop-id>/` directory and delete the original unprocessed files from the working directory.
+   - Move the final optimized files into the appropriate `assets/images/<stop-id>/` directory. **DO NOT delete the original unprocessed files or the staging directory; leave them intact for now.**
    - Update `assets/data/stops.json` with the assigned filenames for each stop.
 
 ## Testing & Validation
