@@ -224,7 +224,7 @@ function populatePanel(stop) {
       }
     };
   } else {
-    heroImg.src = '';
+    heroImg.removeAttribute('src');
     heroImg.alt = '';
     heroImg.classList.remove('loaded');
     heroContainer.classList.add('empty');

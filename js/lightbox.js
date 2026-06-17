@@ -62,7 +62,7 @@ function buildLightbox() {
     <button class="lightbox-arrow lightbox-arrow-next" aria-label="Next photo"></button>
     <div class="lightbox-image-wrap">
       <div class="lightbox-spinner" aria-hidden="true"></div>
-      <img class="lightbox-image" src="" alt="" draggable="false" />
+      <img class="lightbox-image" alt="" draggable="false" />
     </div>
     <div class="lightbox-info">
       <span class="lightbox-counter"></span>
