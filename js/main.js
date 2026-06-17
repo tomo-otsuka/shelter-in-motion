@@ -3,12 +3,19 @@
  *
  * Orchestrates initialization: loads data, sets up the map,
  * wires the panel, and runs the opening animation.
+ *
+ * Landing experience: the overlay auto-dissolves after a brief hold,
+ * or the user can click/tap anywhere (or press Enter/Space) to begin
+ * immediately.
  */
 
 import { loadAllData } from './data.js';
 import { initMap, addRoute, addOriginMarker, addMarkers, showAllMarkers, setMarkerClickHandler, setMapClickHandler } from './map.js';
 import { initPanel, openPanel, closePanel } from './panel.js';
 import { animateRoute } from './animation.js';
+
+/** How long (ms) the landing title holds before auto-dissolving */
+const AUTO_DISSOLVE_DELAY = 2500;
 
 async function init() {
   // 1. Initialize the map immediately (visible while data loads)
@@ -41,34 +48,64 @@ async function init() {
     closePanel();
   });
 
-  // 7. Wire the Explore button
-  const exploreBtn = document.getElementById('explore-btn');
+  // 7. Landing dissolve — auto-trigger or click-to-skip
   const landingOverlay = document.getElementById('landing-overlay');
+  let dissolved = false;
 
-  exploreBtn.addEventListener('click', async () => {
-    landingOverlay.classList.add('hidden');
+  /**
+   * Begin the cinematic dissolve and route animation.
+   * @param {boolean} instant - If true, skip dissolve animation (instant hide)
+   */
+  async function beginJourney(instant = false) {
+    if (dissolved) return;
+    dissolved = true;
+
+    // Clear the auto-dissolve timer if it's still pending
+    clearTimeout(autoTimer);
+
+    // Dissolve the overlay
+    if (instant) {
+      landingOverlay.classList.add('hidden');
+    } else {
+      landingOverlay.classList.add('fading');
+    }
 
     // Show origin marker with pulse
     const originEl = originMarker.getElement();
     if (originEl) originEl.classList.add('visible');
 
-    // Animate the route drawing
-    if (layers) {
+    // Animate the route drawing (or show all markers instantly if skipping)
+    if (instant) {
+      showAllMarkers();
+    } else if (layers) {
       await animateRoute(layers.routeLayer, layers.routeGlowLayer);
     } else {
       showAllMarkers();
     }
+  }
+
+  // Click anywhere on overlay → begin immediately
+  landingOverlay.addEventListener('click', () => beginJourney(false));
+
+  // Keyboard: Enter or Space → begin immediately
+  landingOverlay.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      beginJourney(false);
+    }
   });
 
-  // Double-click overlay to skip animation (returning visitors)
-  landingOverlay.addEventListener('dblclick', () => {
-    landingOverlay.classList.add('hidden');
-    const originEl = originMarker.getElement();
-    if (originEl) originEl.classList.add('visible');
-    showAllMarkers();
+  // Double-click → instant skip (returning visitors)
+  landingOverlay.addEventListener('dblclick', (e) => {
+    e.stopPropagation(); // Don't also fire the click handler twice
+    beginJourney(true);
   });
+
+  // Auto-dissolve after the hold period
+  const autoTimer = setTimeout(() => beginJourney(false), AUTO_DISSOLVE_DELAY);
 
   console.log('Shelter in Motion — loaded.');
 }
 
 init();
+

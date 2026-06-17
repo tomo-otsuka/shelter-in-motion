@@ -38,10 +38,41 @@
   justify-content: center;
   background: rgba(13, 11, 9, 0.55);
   backdrop-filter: blur(1px);
-  transition: opacity var(--duration-slow) var(--ease-out),
-              visibility var(--duration-slow);
+  cursor: pointer;
+  transition: opacity 1.2s var(--ease-out),
+              visibility 1.2s;
+  /* Focus ring for keyboard a11y */
+  outline: none;
 }
 
+.landing-overlay:focus-visible {
+  box-shadow: inset 0 0 0 2px rgba(212, 165, 116, 0.4);
+}
+
+/* Cinematic dissolve — radial fade from center outward */
+.landing-overlay.fading {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  /* Use mask-image for a radial dissolve effect */
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 30%,
+    black 70%,
+    black 100%
+  );
+  mask-image: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 30%,
+    black 70%,
+    black 100%
+  );
+  animation: radialDissolve 1.2s var(--ease-out) forwards;
+}
+
+/* Fallback hidden state (instant, for skipping) */
 .landing-overlay.hidden {
   opacity: 0;
   visibility: hidden;
@@ -52,6 +83,8 @@
   text-align: center;
   max-width: 600px;
   padding: var(--space-lg);
+  /* Subtle breathe animation while holding */
+  animation: landingBreathe 4s ease-in-out infinite;
 }
 
 .landing-title {
@@ -59,9 +92,20 @@
   font-size: clamp(2.8rem, 7vw, 5.5rem);
   color: var(--text-primary);
   letter-spacing: -0.02em;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
   opacity: 0;
   animation: fadeInUp 1.2s var(--ease-out) 0.3s forwards;
+}
+
+/* Decorative rule between title and stats */
+.landing-rule {
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--text-caption), transparent);
+  margin: 0 auto var(--space-md);
+  opacity: 0;
+  animation: fadeIn 0.8s var(--ease-out) 0.7s forwards;
 }
 
 .landing-stats {
@@ -69,7 +113,8 @@
   font-size: 0.75rem;
   font-weight: 300;
   color: var(--text-secondary);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   margin-bottom: var(--space-md);
   opacity: 0;
   animation: fadeIn 1s var(--ease-out) 0.9s forwards;
@@ -90,26 +135,23 @@
   animation: fadeIn 1s var(--ease-out) 1.3s forwards;
 }
 
-.explore-btn {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  background: transparent;
-  border: 1px solid rgba(212, 165, 116, 0.4);
-  padding: 0.875rem 2.5rem;
-  cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-out);
+/* --- Landing Hint (animated chevron) --- */
+.landing-hint {
+  display: flex;
+  justify-content: center;
   opacity: 0;
-  animation: fadeIn 1s var(--ease-out) 1.7s forwards;
+  animation: fadeIn 0.8s var(--ease-out) 2s forwards;
 }
 
-.explore-btn:hover {
-  background: var(--accent);
-  color: var(--bg-deep);
-  border-color: var(--accent);
+.landing-hint-chevron {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-right: 1px solid var(--text-caption);
+  border-bottom: 1px solid var(--text-caption);
+  transform: rotate(45deg);
+  animation: hintBob 2s var(--ease-in-out) infinite;
+  opacity: 0.5;
 }
 
 /* --- Custom Markers --- */
@@ -277,6 +319,32 @@
   }
 }
 
+/* Subtle breathe for landing content during the hold */
+@keyframes landingBreathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.008); }
+}
+
+/* Chevron hint bobbing */
+@keyframes hintBob {
+  0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.5; }
+  50% { transform: rotate(45deg) translateY(6px); opacity: 0.3; }
+}
+
+/* Radial dissolve for the overlay */
+@keyframes radialDissolve {
+  0% {
+    opacity: 1;
+    -webkit-mask-image: radial-gradient(ellipse at center, black 0%, black 100%);
+    mask-image: radial-gradient(ellipse at center, black 0%, black 100%);
+  }
+  100% {
+    opacity: 0;
+    -webkit-mask-image: radial-gradient(ellipse at center, transparent 0%, transparent 60%, black 100%);
+    mask-image: radial-gradient(ellipse at center, transparent 0%, transparent 60%, black 100%);
+  }
+}
+
 /* --- Responsive --- */
 @media (max-width: 768px) {
   .landing-stats {
@@ -291,4 +359,10 @@
     font-size: 0.9rem;
     padding: 0 var(--space-md);
   }
+
+  .landing-hint-chevron {
+    width: 16px;
+    height: 16px;
+  }
 }
+

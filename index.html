@@ -34,10 +34,11 @@
   <!-- Map -->
   <div id="map" role="application" aria-label="Interactive trip map"></div>
 
-  <!-- Landing overlay -->
-  <header id="landing-overlay" class="landing-overlay">
+  <!-- Landing overlay — click anywhere or wait to begin -->
+  <header id="landing-overlay" class="landing-overlay" tabindex="0" role="button" aria-label="Click anywhere to begin exploring">
     <div class="landing-content">
       <h1 class="landing-title">Shelter in Motion</h1>
+      <span class="landing-rule" aria-hidden="true"></span>
       <p class="landing-stats">
         <span class="stat">168 days</span>
         <span class="stat-divider">&middot;</span>
@@ -46,7 +47,9 @@
         <span class="stat">13 national parks</span>
       </p>
       <p class="landing-subtitle">A cross-country road trip during lockdown, 2021–2022</p>
-      <button id="explore-btn" class="explore-btn">Explore the journey</button>
+      <div class="landing-hint" aria-hidden="true">
+        <span class="landing-hint-chevron"></span>
+      </div>
     </div>
   </header>
 

@@ -20,8 +20,8 @@ import { showMarker, getMap } from './map.js';
  */
 export function animateRoute(routeLayer, glowLayer, options = {}) {
   const {
-    duration = 6000,
-    delay = 800,
+    duration = 2000,
+    delay = 400,
   } = options;
 
   return new Promise((resolve) => {
