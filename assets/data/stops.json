@@ -8,6 +8,41 @@
   },
   "stops": [
     {
+      "id": "san-francisco",
+      "title": "San Francisco",
+      "chapter": "the-beginning",
+      "tier": "marquee",
+      "coordinates": [
+        37.7749,
+        -122.4194
+      ],
+      "dateStart": "2021-07-31",
+      "dateEnd": "2021-08-05",
+      "days": 6,
+      "dayOfTrip": 0,
+      "state": "CA",
+      "nationalPark": null,
+      "events": [],
+      "notes": "The beginning.",
+      "photos": [
+        "san-francisco-hero.webp",
+        "san-francisco-gallery-1.webp",
+        "san-francisco-gallery-2.webp",
+        "san-francisco-gallery-3.webp",
+        "san-francisco-gallery-4.webp",
+        "san-francisco-gallery-5.webp",
+        "san-francisco-gallery-6.webp",
+        "san-francisco-gallery-7.webp",
+        "san-francisco-gallery-8.webp",
+        "san-francisco-gallery-9.webp",
+        "san-francisco-gallery-10.webp",
+        "san-francisco-gallery-11.webp",
+        "san-francisco-gallery-12.webp",
+        "san-francisco-gallery-13.webp",
+        "san-francisco-gallery-14.webp"
+      ]
+    },
+    {
       "id": "lake-tahoe",
       "title": "Lake Tahoe",
       "chapter": "the-northwest",
